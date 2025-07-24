@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_Tuyen_Sinh" Class="QL_Tuyen_SinhDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DAI\MYSQLSERVER;Initial Catalog=QL_Tuyen_Sinh;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="QuanLyTuVanTuyenSinh.Properties.Settings" SettingsPropertyName="QL_Tuyen_SinhConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="RoleID" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="User_StudentInfo" Member="StudentInfos" ThisKey="UserID" OtherKey="ParentUserID" Type="StudentInfo" />
+      <Association Name="User_StudentInfo1" Member="StudentInfos1" ThisKey="UserID" OtherKey="StudentUserID" Type="StudentInfo" />
+      <Association Name="User_AdmissionRecord" Member="AdmissionRecords" ThisKey="UserID" OtherKey="ApprovedByAdminID" Type="AdmissionRecord" />
+      <Association Name="User_AdmissionRecord1" Member="AdmissionRecords1" ThisKey="UserID" OtherKey="ParentUserID" Type="AdmissionRecord" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentInfo" Member="StudentInfos">
+    <Type Name="StudentInfo">
+      <Column Name="InfoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentUserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParentUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NationalID" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="StudentInfo_AdmissionRecord" Member="AdmissionRecords" ThisKey="InfoID" OtherKey="StudentInfoID" Type="AdmissionRecord" />
+      <Association Name="User_StudentInfo" Member="User" ThisKey="ParentUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="User_StudentInfo1" Member="User1" ThisKey="StudentUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Campus" Member="Campus">
+    <Type Name="Campus">
+      <Column Name="CampusID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CampusName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Campus_Major" Member="Majors" ThisKey="CampusID" OtherKey="CampusID" Type="Major" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Major" Member="Majors">
+    <Type Name="Major">
+      <Column Name="MajorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CampusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TuitionFee" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Major_AdmissionRecord" Member="AdmissionRecords" ThisKey="MajorID" OtherKey="MajorID" Type="AdmissionRecord" />
+      <Association Name="Campus_Major" Member="Campus" ThisKey="CampusID" OtherKey="CampusID" Type="Campus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AdmissionRecord" Member="AdmissionRecords">
+    <Type Name="AdmissionRecord">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentInfoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MajorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="ResultStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExamScore" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="ResultUpdateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="ApprovedByAdminID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AdmissionRecord_Payment" Member="Payments" ThisKey="RecordID" OtherKey="RecordID" Type="Payment" />
+      <Association Name="User_AdmissionRecord" Member="User" ThisKey="ApprovedByAdminID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Major_AdmissionRecord" Member="Major" ThisKey="MajorID" OtherKey="MajorID" Type="Major" IsForeignKey="true" />
+      <Association Name="User_AdmissionRecord1" Member="User1" ThisKey="ParentUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="StudentInfo_AdmissionRecord" Member="StudentInfo" ThisKey="StudentInfoID" OtherKey="InfoID" Type="StudentInfo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="PaymentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="PaymentDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="Method" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="AdmissionRecord_Payment" Member="AdmissionRecord" ThisKey="RecordID" OtherKey="RecordID" Type="AdmissionRecord" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

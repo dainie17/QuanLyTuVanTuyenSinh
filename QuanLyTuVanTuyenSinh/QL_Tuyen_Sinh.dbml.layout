@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.625, 8.5" name="QL_Tuyen_Sinh">
+  <DataContextMoniker Name="/QL_Tuyen_SinhDataContext" />
+  <nestedChildShapes>
+    <classShape Id="af9412aa-2b4c-473b-9a2b-68bbc7248c4c" absoluteBounds="1.25, 3, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/QL_Tuyen_SinhDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dacda84c-4e9a-45e9-8cfe-ddd24fe7ccaa" absoluteBounds="1.2650000000000001, 3.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6cddee05-7b98-421b-a590-e8ab275d295e" absoluteBounds="3.875, 3.25, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/QL_Tuyen_SinhDataContext/StudentInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="15fff8a4-5396-47ac-8434-cd04ba3b50ce" absoluteBounds="3.8899999999999997, 3.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.25 : 4.29890055338542); (3.41666666666667 : 4.29890055338542 : JumpStart); (3.58333333333333 : 4.29890055338542 : JumpEnd); (3.875 : 4.29890055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/User/User_StudentInfo" />
+      <nodes>
+        <classShapeMoniker Id="af9412aa-2b4c-473b-9a2b-68bbc7248c4c" />
+        <classShapeMoniker Id="6cddee05-7b98-421b-a590-e8ab275d295e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.25 : 3.71195027669271); (3.41666666666667 : 3.71195027669271 : JumpStart); (3.58333333333333 : 3.71195027669271 : JumpEnd); (3.875 : 3.71195027669271)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/User/User_StudentInfo1" />
+      <nodes>
+        <classShapeMoniker Id="af9412aa-2b4c-473b-9a2b-68bbc7248c4c" />
+        <classShapeMoniker Id="6cddee05-7b98-421b-a590-e8ab275d295e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="41311a41-abd7-41dd-b128-56366f6c435d" absoluteBounds="1, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/QL_Tuyen_SinhDataContext/Campus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05a279dd-7264-448e-92fe-de7c5ca86961" absoluteBounds="1.0150000000000001, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="140ac563-50f3-41cb-96c6-f0a1993a905c" absoluteBounds="4.375, 1, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/QL_Tuyen_SinhDataContext/Major" />
+      <nestedChildShapes>
+        <elementListCompartment Id="13d25715-9e25-4109-a2f5-4ae3f1529c66" absoluteBounds="4.39, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3 : 1.73159912109375); (4.375 : 1.73159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/Campus/Campus_Major" />
+      <nodes>
+        <classShapeMoniker Id="41311a41-abd7-41dd-b128-56366f6c435d" />
+        <classShapeMoniker Id="140ac563-50f3-41cb-96c6-f0a1993a905c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f92a285d-8e40-47b5-8e43-03ff156cbf0e" absoluteBounds="7.25, 1.625, 2, 2.5401025390625">
+      <DataClassMoniker Name="/QL_Tuyen_SinhDataContext/AdmissionRecord" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8870cb53-25ba-4a1f-8364-25c945f9645d" absoluteBounds="7.265, 2.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.25 : 3.09375); (3.41666666666667 : 3.09375 : JumpStart); (3.58333333333333 : 3.09375 : JumpEnd); (6.79166666666667 : 3.09375 : JumpStart); (6.95833333333333 : 3.09375 : JumpEnd); (7.25 : 3.09375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/User/User_AdmissionRecord" />
+      <nodes>
+        <classShapeMoniker Id="af9412aa-2b4c-473b-9a2b-68bbc7248c4c" />
+        <classShapeMoniker Id="f92a285d-8e40-47b5-8e43-03ff156cbf0e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.375 : 2.19794840494792); (7.25 : 2.19794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/Major/Major_AdmissionRecord" />
+      <nodes>
+        <classShapeMoniker Id="140ac563-50f3-41cb-96c6-f0a1993a905c" />
+        <classShapeMoniker Id="f92a285d-8e40-47b5-8e43-03ff156cbf0e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.25 : 5.34780110677083); (2.25 : 5.59780110677083); (3.5 : 5.59780110677083); (3.5 : 2.89589680989583); (6.875 : 2.89589680989583); (6.875 : 3.66067826953125); (7.25 : 3.66067826953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/User/User_AdmissionRecord1" />
+      <nodes>
+        <classShapeMoniker Id="af9412aa-2b4c-473b-9a2b-68bbc7248c4c" />
+        <classShapeMoniker Id="f92a285d-8e40-47b5-8e43-03ff156cbf0e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.875 : 3.97539040429688); (7.25 : 3.97539040429688)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/StudentInfo/StudentInfo_AdmissionRecord" />
+      <nodes>
+        <classShapeMoniker Id="6cddee05-7b98-421b-a590-e8ab275d295e" />
+        <classShapeMoniker Id="f92a285d-8e40-47b5-8e43-03ff156cbf0e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c68d1d8b-4d9d-4cd1-b7fb-8e0ea3409bb1" absoluteBounds="10.375, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/QL_Tuyen_SinhDataContext/Payment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="27cef6a4-b275-43a5-aabc-e9e440ed92f4" absoluteBounds="10.39, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.25 : 2.16909912109375); (10.375 : 2.16909912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/QL_Tuyen_SinhDataContext/AdmissionRecord/AdmissionRecord_Payment" />
+      <nodes>
+        <classShapeMoniker Id="f92a285d-8e40-47b5-8e43-03ff156cbf0e" />
+        <classShapeMoniker Id="c68d1d8b-4d9d-4cd1-b7fb-8e0ea3409bb1" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

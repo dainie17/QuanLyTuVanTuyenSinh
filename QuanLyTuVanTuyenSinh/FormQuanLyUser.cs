@@ -68,5 +68,11 @@ namespace QuanLyTuVanTuyenSinh
             }
         }
 
+        private void label7_Click(object sender, EventArgs e)
+        {
+            FormMain formMain = new FormMain();
+            formMain.Show();
+            this.Close();
+        }
     }
 }

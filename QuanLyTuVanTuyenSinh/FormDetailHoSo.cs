@@ -75,9 +75,8 @@ namespace QuanLyTuVanTuyenSinh
                     record.ApprovedByAdminID = Session.UserID;
                     db.SubmitChanges();
                     MessageBox.Show("Đã đánh giá ĐẬU cho hồ sơ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FormFormQuanLyHoSo form = new FormFormQuanLyHoSo();
-                    form.Show();
-                    this.Hide();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
@@ -98,15 +97,20 @@ namespace QuanLyTuVanTuyenSinh
                     record.ApprovedByAdminID = Session.UserID;
                     db.SubmitChanges();
                     MessageBox.Show("Đã đánh giá RỚT cho hồ sơ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FormFormQuanLyHoSo form = new FormFormQuanLyHoSo();
-                    form.Show();
-                    this.Hide();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Không tìm thấy hồ sơ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

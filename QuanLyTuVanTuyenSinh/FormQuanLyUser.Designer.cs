@@ -39,6 +39,7 @@
             this.lblFooter = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -47,6 +48,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.OrangeRed;
+            this.panelHeader.Controls.Add(this.label7);
             this.panelHeader.Controls.Add(this.label1);
             this.panelHeader.Controls.Add(this.label2);
             this.panelHeader.Controls.Add(this.pictureBox1);
@@ -79,7 +81,7 @@
             this.label2.BackColor = System.Drawing.Color.OrangeRed;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(802, 21);
+            this.label2.Location = new System.Drawing.Point(768, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 28);
             this.label2.TabIndex = 3;
@@ -176,6 +178,20 @@
             this.dataGridView1.Size = new System.Drawing.Size(944, 259);
             this.dataGridView1.TabIndex = 14;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(952, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 34);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "X";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
             // FormQuanLyUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -187,7 +203,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblFooter);
             this.Controls.Add(this.panelHeader);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormQuanLyUser";
             this.Text = "Quản lý người dùng";
             this.panelHeader.ResumeLayout(false);
@@ -212,5 +228,6 @@
         private System.Windows.Forms.Label lblFooter;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label7;
     }
 }

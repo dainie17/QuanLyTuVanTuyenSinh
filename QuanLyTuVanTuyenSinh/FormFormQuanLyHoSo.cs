@@ -89,13 +89,18 @@ namespace QuanLyTuVanTuyenSinh
                     if (record != null)
                     {
                         FormDetailHoSo frm = new FormDetailHoSo(record);
-                        frm.FormClosed += (s, args) => this.Show();
-                        frm.Show();
-                        this.Hide();
+                        frm.ShowDialog();
+                        LoadData();
                     }
                 }
             }
         }
 
+        private void label6_Click(object sender, EventArgs e)
+        {
+            FormMain frm = new FormMain();
+            frm.Show();
+            this.Close();
+        }
     }
 }

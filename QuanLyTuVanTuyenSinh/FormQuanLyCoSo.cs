@@ -139,5 +139,12 @@ namespace QuanLyTuVanTuyenSinh
             tbWeb.Clear();
             selectedID = -1;
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            FormMain frmMain = new FormMain();
+            frmMain.Show();
+            this.Close();
+        }
     }
 }

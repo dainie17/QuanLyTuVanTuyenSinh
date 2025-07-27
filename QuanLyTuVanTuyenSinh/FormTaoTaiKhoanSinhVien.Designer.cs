@@ -1,6 +1,6 @@
 ﻿namespace QuanLyTuVanTuyenSinh
 {
-    partial class FormQuanLyCoSo
+    partial class FormTaoTaiKhoanSinhVien
     {
         /// <summary>
         /// Required designer variable.
@@ -39,27 +39,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblFooter = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbTenCoSo = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tbDiaChi = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tbSDT = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tbWeb = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.dgvCoSo = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbMatKhau = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbTenDangNhap = new System.Windows.Forms.TextBox();
+            this.btnTaoTaiKhoan = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCoSo)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -85,7 +79,7 @@
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(952, 17);
+            this.label7.Location = new System.Drawing.Point(952, 18);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 34);
             this.label7.TabIndex = 8;
@@ -112,7 +106,7 @@
             this.label2.BackColor = System.Drawing.Color.OrangeRed;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(764, 20);
+            this.label2.Location = new System.Drawing.Point(777, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 28);
             this.label2.TabIndex = 3;
@@ -159,11 +153,12 @@
             this.label3.BackColor = System.Drawing.Color.OrangeRed;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(574, 623);
+            this.label3.Location = new System.Drawing.Point(573, 388);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(397, 20);
             this.label3.TabIndex = 12;
             this.label3.Text = "Tổng đài hỗ trợ - Email: tuyensinh-daucap@hanoiedu.vn";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -171,11 +166,12 @@
             this.label4.BackColor = System.Drawing.Color.OrangeRed;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(668, 591);
+            this.label4.Location = new System.Drawing.Point(668, 360);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(303, 28);
             this.label4.TabIndex = 11;
             this.label4.Text = "CỔNG THÔNG TIN TUYỂN SINH";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // lblFooter
             // 
@@ -183,7 +179,7 @@
             this.lblFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblFooter.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblFooter.ForeColor = System.Drawing.Color.White;
-            this.lblFooter.Location = new System.Drawing.Point(0, 585);
+            this.lblFooter.Location = new System.Drawing.Point(0, 354);
             this.lblFooter.Name = "lblFooter";
             this.lblFooter.Size = new System.Drawing.Size(1000, 64);
             this.lblFooter.TabIndex = 10;
@@ -193,177 +189,131 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(384, 85);
+            this.label5.Location = new System.Drawing.Point(326, 81);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(199, 32);
+            this.label5.Size = new System.Drawing.Size(386, 32);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Quản lý cơ sở";
+            this.label5.Text = "Tạo tài khoản cho sinh viên";
             // 
-            // groupBox1
+            // groupBox5
             // 
-            this.groupBox1.Controls.Add(this.tbTenCoSo);
-            this.groupBox1.Location = new System.Drawing.Point(36, 129);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(408, 52);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tên cơ sở";
-            // 
-            // tbTenCoSo
-            // 
-            this.tbTenCoSo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTenCoSo.Location = new System.Drawing.Point(0, 17);
-            this.tbTenCoSo.Name = "tbTenCoSo";
-            this.tbTenCoSo.Size = new System.Drawing.Size(408, 30);
-            this.tbTenCoSo.TabIndex = 2;
-            this.tbTenCoSo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.tbDiaChi);
-            this.groupBox2.Location = new System.Drawing.Point(563, 129);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(408, 52);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Địa chỉ";
-            // 
-            // tbDiaChi
-            // 
-            this.tbDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDiaChi.Location = new System.Drawing.Point(0, 17);
-            this.tbDiaChi.Name = "tbDiaChi";
-            this.tbDiaChi.Size = new System.Drawing.Size(407, 30);
-            this.tbDiaChi.TabIndex = 0;
-            this.tbDiaChi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tbSDT);
-            this.groupBox3.Location = new System.Drawing.Point(36, 187);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(408, 52);
-            this.groupBox3.TabIndex = 16;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Số điện thoại";
+            this.groupBox5.Controls.Add(this.tbSDT);
+            this.groupBox5.Location = new System.Drawing.Point(524, 194);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(446, 58);
+            this.groupBox5.TabIndex = 23;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Số điện thoại";
             // 
             // tbSDT
             // 
-            this.tbSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSDT.Location = new System.Drawing.Point(0, 17);
+            this.tbSDT.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSDT.Location = new System.Drawing.Point(0, 15);
             this.tbSDT.Name = "tbSDT";
-            this.tbSDT.Size = new System.Drawing.Size(408, 30);
-            this.tbSDT.TabIndex = 0;
+            this.tbSDT.Size = new System.Drawing.Size(446, 34);
+            this.tbSDT.TabIndex = 13;
             this.tbSDT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.tbEmail);
-            this.groupBox4.Location = new System.Drawing.Point(563, 187);
+            this.groupBox4.Location = new System.Drawing.Point(31, 194);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(408, 52);
-            this.groupBox4.TabIndex = 17;
+            this.groupBox4.Size = new System.Drawing.Size(446, 58);
+            this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Email";
             // 
             // tbEmail
             // 
-            this.tbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbEmail.Location = new System.Drawing.Point(0, 17);
+            this.tbEmail.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbEmail.Location = new System.Drawing.Point(6, 15);
             this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(408, 30);
-            this.tbEmail.TabIndex = 0;
+            this.tbEmail.Size = new System.Drawing.Size(446, 34);
+            this.tbEmail.TabIndex = 12;
             this.tbEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // groupBox5
+            // groupBox3
             // 
-            this.groupBox5.Controls.Add(this.tbWeb);
-            this.groupBox5.Location = new System.Drawing.Point(36, 245);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(408, 52);
-            this.groupBox5.TabIndex = 18;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Website";
+            this.groupBox3.Controls.Add(this.tbMatKhau);
+            this.groupBox3.Location = new System.Drawing.Point(524, 121);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(446, 58);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Mật khẩu";
             // 
-            // tbWeb
+            // tbMatKhau
             // 
-            this.tbWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeb.Location = new System.Drawing.Point(0, 17);
-            this.tbWeb.Name = "tbWeb";
-            this.tbWeb.Size = new System.Drawing.Size(408, 30);
-            this.tbWeb.TabIndex = 0;
+            this.tbMatKhau.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMatKhau.Location = new System.Drawing.Point(0, 15);
+            this.tbMatKhau.Name = "tbMatKhau";
+            this.tbMatKhau.PasswordChar = '*';
+            this.tbMatKhau.Size = new System.Drawing.Size(446, 34);
+            this.tbMatKhau.TabIndex = 11;
+            this.tbMatKhau.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnAdd
+            // groupBox2
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(563, 246);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(214, 51);
-            this.btnAdd.TabIndex = 19;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.groupBox2.Controls.Add(this.tbTenDangNhap);
+            this.groupBox2.Location = new System.Drawing.Point(31, 121);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(446, 58);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Tên đăng nhập";
             // 
-            // btnUpdate
+            // tbTenDangNhap
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(783, 246);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(187, 51);
-            this.btnUpdate.TabIndex = 20;
-            this.btnUpdate.Text = "Sửa";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.tbTenDangNhap.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTenDangNhap.Location = new System.Drawing.Point(0, 15);
+            this.tbTenDangNhap.Name = "tbTenDangNhap";
+            this.tbTenDangNhap.Size = new System.Drawing.Size(446, 34);
+            this.tbTenDangNhap.TabIndex = 10;
+            this.tbTenDangNhap.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dgvCoSo
+            // btnTaoTaiKhoan
             // 
-            this.dgvCoSo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCoSo.Location = new System.Drawing.Point(36, 304);
-            this.dgvCoSo.Name = "dgvCoSo";
-            this.dgvCoSo.RowHeadersWidth = 51;
-            this.dgvCoSo.RowTemplate.Height = 24;
-            this.dgvCoSo.Size = new System.Drawing.Size(934, 278);
-            this.dgvCoSo.TabIndex = 21;
+            this.btnTaoTaiKhoan.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnTaoTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaoTaiKhoan.ForeColor = System.Drawing.Color.White;
+            this.btnTaoTaiKhoan.Location = new System.Drawing.Point(31, 271);
+            this.btnTaoTaiKhoan.Name = "btnTaoTaiKhoan";
+            this.btnTaoTaiKhoan.Size = new System.Drawing.Size(939, 50);
+            this.btnTaoTaiKhoan.TabIndex = 19;
+            this.btnTaoTaiKhoan.Text = "Điền thông tin sinh viên";
+            this.btnTaoTaiKhoan.UseVisualStyleBackColor = false;
+            this.btnTaoTaiKhoan.Click += new System.EventHandler(this.btnTaoTaiKhoan_Click);
             // 
-            // FormQuanLyCoSo
+            // FormTaoTaiKhoanSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 649);
-            this.Controls.Add(this.dgvCoSo);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
+            this.ClientSize = new System.Drawing.Size(1000, 418);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnTaoTaiKhoan);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblFooter);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormQuanLyCoSo";
-            this.Text = "Quản lý cơ sở";
+            this.Name = "FormTaoTaiKhoanSinhVien";
+            this.Text = "Tạo tài khoản cho sinh viên";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCoSo)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,19 +331,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblFooter;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.DataGridView dgvCoSo;
-        private System.Windows.Forms.TextBox tbTenCoSo;
-        private System.Windows.Forms.TextBox tbDiaChi;
         private System.Windows.Forms.TextBox tbSDT;
+        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.TextBox tbWeb;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox tbMatKhau;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox tbTenDangNhap;
+        private System.Windows.Forms.Button btnTaoTaiKhoan;
         private System.Windows.Forms.Label label7;
     }
 }

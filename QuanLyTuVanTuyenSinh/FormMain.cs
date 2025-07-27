@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace QuanLyTuVanTuyenSinh
 {
     public partial class FormMain : Form
     {
+        private string username;
+        private string password;
+        private string email;
+        private string phone;
         public FormMain()
         {
             InitializeComponent();
@@ -51,15 +57,18 @@ namespace QuanLyTuVanTuyenSinh
                     btnQuanLyCoSo.Visible = true;
                     btnQuanLyNganh.Visible = true;
                     btnQuanLyTuyenSinh.Visible = true;
+                    btnDangXuat.Location = new Point(44, 225);
                     break;
 
                 case 2: // Phụ huynh
                     btnDangKyTkSv.Visible = true;
+                    btnDangKyTkSv.Location = new Point(44, 190);
                     btnQuanLySv.Visible = true;
+                    btnQuanLySv.Location = new Point(44, 225);
                     btnDangKyTuyenSinh.Visible = true;
                     btnNganhHoc.Visible = true;
                     btnXemKetQua.Visible = true;
-                    btnCapNhatTk.Visible = true;
+                    btnDangXuat.Location = new Point(44, 260);
                     break;
 
                 case 3: // Sinh viên
@@ -67,6 +76,7 @@ namespace QuanLyTuVanTuyenSinh
                     btnNganhHoc.Visible = true;
                     btnXemKetQua.Visible = true;
                     btnCapNhatTk.Visible = true;
+                    btnDangXuat.Location = new Point(44, 225);
                     break;
             }
 
@@ -77,7 +87,6 @@ namespace QuanLyTuVanTuyenSinh
         private void btnQuanLyNganh_Click(object sender, EventArgs e)
         {
             FormQuanLyNganhHoc formQuanLyNganhHoc = new FormQuanLyNganhHoc();
-            formQuanLyNganhHoc.FormClosed += (s, args) => this.Show();
             formQuanLyNganhHoc.Show();
             this.Hide();
 
@@ -85,13 +94,30 @@ namespace QuanLyTuVanTuyenSinh
 
         private void btnCapNhatTk_Click(object sender, EventArgs e)
         {
+             
+            using (var db = new QL_Tuyen_SinhDataContext())
+            {
+                var currentUser = db.Users.FirstOrDefault(u => u.UserID == Session.UserID);
+
+                if (currentUser != null)
+                {
+                    username = currentUser.UserName;
+                    password = currentUser.PasswordHash;
+                    email = currentUser.Email;
+                    phone = currentUser.Phone;
+                    // và các trường khác...
+                }
+            }
+            FormDienThongTinSinhVien formDienThongTinSinhVien = new FormDienThongTinSinhVien(username, password, email, phone);
+            formDienThongTinSinhVien.Show();
+            this.Hide();
 
         }
 
         private void btnQuanLyUser_Click(object sender, EventArgs e)
         {
             FormQuanLyUser formQuanLyUser = new FormQuanLyUser();
-            formQuanLyUser.FormClosed += (s, args) => this.Show(); // Hiện lại form hiện tại khi FormQuanLyUser đóng
+            //formQuanLyUser.FormClosed += (s, args) => this.Show(); // Hiện lại form hiện tại khi FormQuanLyUser đóng
             formQuanLyUser.Show();
             this.Hide();
         }
@@ -99,7 +125,6 @@ namespace QuanLyTuVanTuyenSinh
         private void btnQuanLyCoSo_Click(object sender, EventArgs e)
         {
             FormQuanLyCoSo formQuanLyCo = new FormQuanLyCoSo();
-            formQuanLyCo.FormClosed += (s, args) => this.Show(); // Hiện lại form hiện tại khi FormQuanLyUser đóng
             formQuanLyCo.Show();
             this.Hide();
         }
@@ -107,9 +132,51 @@ namespace QuanLyTuVanTuyenSinh
         private void btnQuanLyTuyenSinh_Click(object sender, EventArgs e)
         {
             FormFormQuanLyHoSo formFormQuanLyHoSo = new FormFormQuanLyHoSo();
-            formFormQuanLyHoSo.FormClosed += (s, args) => this.Show();
             formFormQuanLyHoSo.Show();
             this.Hide();
+        }
+
+        private void btnNganhHoc_Click(object sender, EventArgs e)
+        {
+            FormXemNganhHoc formXemNganhHoc = new FormXemNganhHoc();
+            formXemNganhHoc.Show();
+            this.Hide();
+        }
+
+        private void btnDangKyTkSv_Click(object sender, EventArgs e)
+        {
+            FormTaoTaiKhoanSinhVien formTaoTaiKhoanSinhVien = new FormTaoTaiKhoanSinhVien();
+            formTaoTaiKhoanSinhVien.Show();
+            this.Hide();
+        }
+
+        private void btnDangKyTuyenSinh_Click(object sender, EventArgs e)
+        {
+            FormDangKyTuyenSinh formDangKyTuyenSinh = new FormDangKyTuyenSinh();
+            formDangKyTuyenSinh.Show();
+            this.Hide();
+        }
+
+        private void btnXemKetQua_Click(object sender, EventArgs e)
+        {
+            FormXemKetQua formXemKetQua = new FormXemKetQua();
+            formXemKetQua.Show();
+            this.Hide();
+        }
+
+        private void btnQuanLySv_Click(object sender, EventArgs e)
+        {
+            FormQuanLySinhVien formQuanLySinhVien = new FormQuanLySinhVien();
+            formQuanLySinhVien.Show();
+            this.Hide();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            // Xoá session
+            Session.Clear();
+
+            this.Close();
         }
     }
 }

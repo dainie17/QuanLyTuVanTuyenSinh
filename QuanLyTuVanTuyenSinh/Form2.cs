@@ -90,5 +90,10 @@ namespace QuanLyTuVanTuyenSinh
         {
 
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

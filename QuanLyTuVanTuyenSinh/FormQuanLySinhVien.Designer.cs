@@ -1,6 +1,6 @@
 ﻿namespace QuanLyTuVanTuyenSinh
 {
-    partial class FormFormQuanLyHoSo
+    partial class FormQuanLySinhVien
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -38,11 +39,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblFooter = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgvHoSo = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
+            this.dtgSinhVien = new System.Windows.Forms.DataGridView();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHoSo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgSinhVien)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -60,6 +60,20 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 64);
             this.panelHeader.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(954, 17);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 34);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "X";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label1
             // 
@@ -81,7 +95,7 @@
             this.label2.BackColor = System.Drawing.Color.OrangeRed;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(767, 19);
+            this.label2.Location = new System.Drawing.Point(779, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 28);
             this.label2.TabIndex = 3;
@@ -98,6 +112,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // lblTenTruong
             // 
@@ -128,7 +143,7 @@
             this.label3.BackColor = System.Drawing.Color.OrangeRed;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(574, 423);
+            this.label3.Location = new System.Drawing.Point(574, 425);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(397, 20);
             this.label3.TabIndex = 12;
@@ -140,7 +155,7 @@
             this.label4.BackColor = System.Drawing.Color.OrangeRed;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(668, 391);
+            this.label4.Location = new System.Drawing.Point(668, 393);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(303, 28);
             this.label4.TabIndex = 11;
@@ -162,56 +177,42 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(323, 82);
+            this.label5.Location = new System.Drawing.Point(371, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(388, 32);
+            this.label5.Size = new System.Drawing.Size(249, 32);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Danh sách hồ sơ tuyển sinh";
+            this.label5.Text = "Quản lý sinh viên";
             // 
-            // dgvHoSo
+            // dtgSinhVien
             // 
-            this.dgvHoSo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHoSo.Location = new System.Drawing.Point(31, 117);
-            this.dgvHoSo.Name = "dgvHoSo";
-            this.dgvHoSo.RowHeadersWidth = 51;
-            this.dgvHoSo.RowTemplate.Height = 24;
-            this.dgvHoSo.Size = new System.Drawing.Size(940, 266);
-            this.dgvHoSo.TabIndex = 14;
-            this.dgvHoSo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoSo_CellClick);
+            this.dtgSinhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgSinhVien.Location = new System.Drawing.Point(28, 129);
+            this.dtgSinhVien.Name = "dtgSinhVien";
+            this.dtgSinhVien.RowHeadersWidth = 51;
+            this.dtgSinhVien.RowTemplate.Height = 24;
+            this.dtgSinhVien.Size = new System.Drawing.Size(943, 254);
+            this.dtgSinhVien.TabIndex = 14;
+            this.dtgSinhVien.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgSinhVien_CellDoubleClick);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(952, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 34);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "X";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // FormFormQuanLyHoSo
+            // FormQuanLySinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
-            this.Controls.Add(this.dgvHoSo);
+            this.Controls.Add(this.dtgSinhVien);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblFooter);
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormFormQuanLyHoSo";
-            this.Text = "FormFormQuanLyHoSo";
-            this.Load += new System.EventHandler(this.FormFormQuanLyHoSo_Load);
+            this.Name = "FormQuanLySinhVien";
+            this.Text = "Quản lý sinh viên";
+            this.Load += new System.EventHandler(this.FormQuanLySinhVien_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHoSo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgSinhVien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,7 +230,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblFooter;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dgvHoSo;
+        private System.Windows.Forms.DataGridView dtgSinhVien;
         private System.Windows.Forms.Label label6;
     }
 }

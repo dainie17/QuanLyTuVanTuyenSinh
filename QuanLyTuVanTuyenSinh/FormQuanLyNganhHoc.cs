@@ -130,5 +130,12 @@ namespace QuanLyTuVanTuyenSinh
             comboBox1.SelectedIndex = 0;
             selectedMajorId = -1;
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            FormMain frmMain = new FormMain();
+            frmMain.Show();
+            this.Close();
+        }
     }
 }

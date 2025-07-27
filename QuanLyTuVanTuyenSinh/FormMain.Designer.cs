@@ -53,6 +53,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnCapNhatTk = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -60,6 +61,7 @@ namespace QuanLyTuVanTuyenSinh
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.OrangeRed;
+            this.panelHeader.Controls.Add(this.label7);
             this.panelHeader.Controls.Add(this.label1);
             this.panelHeader.Controls.Add(this.label2);
             this.panelHeader.Controls.Add(this.pictureBox1);
@@ -92,7 +94,7 @@ namespace QuanLyTuVanTuyenSinh
             this.label2.BackColor = System.Drawing.Color.OrangeRed;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(802, 21);
+            this.label2.Location = new System.Drawing.Point(764, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 28);
             this.label2.TabIndex = 3;
@@ -252,6 +254,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDangKyTkSv.TabIndex = 16;
             this.btnDangKyTkSv.Text = "Tạo tài khoản cho sinh viên";
             this.btnDangKyTkSv.UseVisualStyleBackColor = false;
+            this.btnDangKyTkSv.Click += new System.EventHandler(this.btnDangKyTkSv_Click);
             // 
             // btnQuanLySv
             // 
@@ -265,6 +268,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnQuanLySv.TabIndex = 17;
             this.btnQuanLySv.Text = "Quản lý tài khoản sinh viên";
             this.btnQuanLySv.UseVisualStyleBackColor = false;
+            this.btnQuanLySv.Click += new System.EventHandler(this.btnQuanLySv_Click);
             // 
             // btnDangKyTuyenSinh
             // 
@@ -278,6 +282,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDangKyTuyenSinh.TabIndex = 18;
             this.btnDangKyTuyenSinh.Text = "Đăng ký tuyển sinh";
             this.btnDangKyTuyenSinh.UseVisualStyleBackColor = false;
+            this.btnDangKyTuyenSinh.Click += new System.EventHandler(this.btnDangKyTuyenSinh_Click);
             // 
             // btnNganhHoc
             // 
@@ -291,6 +296,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnNganhHoc.TabIndex = 19;
             this.btnNganhHoc.Text = "Xem ngành học";
             this.btnNganhHoc.UseVisualStyleBackColor = false;
+            this.btnNganhHoc.Click += new System.EventHandler(this.btnNganhHoc_Click);
             // 
             // btnXemKetQua
             // 
@@ -304,13 +310,14 @@ namespace QuanLyTuVanTuyenSinh
             this.btnXemKetQua.TabIndex = 21;
             this.btnXemKetQua.Text = "Xem kết quả tuyển sinh";
             this.btnXemKetQua.UseVisualStyleBackColor = false;
+            this.btnXemKetQua.Click += new System.EventHandler(this.btnXemKetQua_Click);
             // 
             // btnCapNhatTk
             // 
             this.btnCapNhatTk.BackColor = System.Drawing.Color.OrangeRed;
             this.btnCapNhatTk.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCapNhatTk.ForeColor = System.Drawing.Color.White;
-            this.btnCapNhatTk.Location = new System.Drawing.Point(483, 278);
+            this.btnCapNhatTk.Location = new System.Drawing.Point(58, 234);
             this.btnCapNhatTk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCapNhatTk.Name = "btnCapNhatTk";
             this.btnCapNhatTk.Size = new System.Drawing.Size(419, 40);
@@ -340,6 +347,20 @@ namespace QuanLyTuVanTuyenSinh
             this.label6.Text = "Các ngành học bắt kịp xu hướng tuyển dụng, \nphù hợp với nhu cầu nhân lực tại các " +
     "khu vực\n phát triển du lịch, dịch vụ và công nghệ cao";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(952, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 34);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "X";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -362,7 +383,7 @@ namespace QuanLyTuVanTuyenSinh
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblFooter);
             this.Controls.Add(this.panelHeader);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
             this.Text = "Trang chủ";
@@ -399,5 +420,6 @@ namespace QuanLyTuVanTuyenSinh
         private Button btnCapNhatTk;
         private Label label5;
         private Label label6;
+        private Label label7;
     }
 }

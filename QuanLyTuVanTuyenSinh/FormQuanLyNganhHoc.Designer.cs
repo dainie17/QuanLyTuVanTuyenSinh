@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -60,6 +61,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.OrangeRed;
+            this.panelHeader.Controls.Add(this.label7);
             this.panelHeader.Controls.Add(this.label1);
             this.panelHeader.Controls.Add(this.label2);
             this.panelHeader.Controls.Add(this.pictureBox1);
@@ -71,6 +73,20 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 64);
             this.panelHeader.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(952, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 34);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "X";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label1
             // 
@@ -92,7 +108,7 @@
             this.label2.BackColor = System.Drawing.Color.OrangeRed;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(802, 21);
+            this.label2.Location = new System.Drawing.Point(768, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 28);
             this.label2.TabIndex = 3;
@@ -184,9 +200,8 @@
             // 
             this.tbTenNganh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTenNganh.Location = new System.Drawing.Point(0, 17);
-            this.tbTenNganh.Multiline = true;
             this.tbTenNganh.Name = "tbTenNganh";
-            this.tbTenNganh.Size = new System.Drawing.Size(408, 35);
+            this.tbTenNganh.Size = new System.Drawing.Size(408, 30);
             this.tbTenNganh.TabIndex = 2;
             this.tbTenNganh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -287,9 +302,8 @@
             // 
             this.tbHocPhi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbHocPhi.Location = new System.Drawing.Point(0, 17);
-            this.tbHocPhi.Multiline = true;
             this.tbHocPhi.Name = "tbHocPhi";
-            this.tbHocPhi.Size = new System.Drawing.Size(408, 35);
+            this.tbHocPhi.Size = new System.Drawing.Size(408, 30);
             this.tbHocPhi.TabIndex = 2;
             this.tbHocPhi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -311,6 +325,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblFooter);
             this.Controls.Add(this.panelHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormQuanLyNganhHoc";
             this.Text = "Quản lý ngành học";
             this.panelHeader.ResumeLayout(false);
@@ -350,5 +365,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tbHocPhi;
+        private System.Windows.Forms.Label label7;
     }
 }

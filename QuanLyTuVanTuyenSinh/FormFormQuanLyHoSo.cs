@@ -7,11 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using System.Runtime.InteropServices;
+
 
 namespace QuanLyTuVanTuyenSinh
 {
     public partial class FormFormQuanLyHoSo : Form
-    {   
+    {
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+
         public FormFormQuanLyHoSo()
         {
             InitializeComponent();
@@ -72,25 +84,16 @@ namespace QuanLyTuVanTuyenSinh
                         var record = db.AdmissionRecords.FirstOrDefault(x => x.RecordID == recordID);
                         if (record != null)
                         {
+                            // Xoá các bản ghi payment liên quan
+                            var payments = db.Payments.Where(p => p.RecordID == record.RecordID).ToList();
+                            db.Payments.DeleteAllOnSubmit(payments);
+
+                            // Xoá hồ sơ
                             db.AdmissionRecords.DeleteOnSubmit(record);
                             db.SubmitChanges();
+
                             LoadData();
                         }
-                    }
-                }
-                else
-                {
-                    // Mở form chi tiết
-                    var db = new QL_Tuyen_SinhDataContext();
-                    var record = (from ar in db.AdmissionRecords
-                                  where ar.RecordID == recordID
-                                  select ar).FirstOrDefault();
-
-                    if (record != null)
-                    {
-                        FormDetailHoSo frm = new FormDetailHoSo(record);
-                        frm.ShowDialog();
-                        LoadData();
                     }
                 }
             }
@@ -101,6 +104,32 @@ namespace QuanLyTuVanTuyenSinh
             FormMain frm = new FormMain();
             frm.Show();
             this.Close();
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+        }
+
+        private void dgvHoSo_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var recordID = (int)dgvHoSo.Rows[e.RowIndex].Cells["RecordID"].Value;
+                // Mở form chi tiết
+                var db = new QL_Tuyen_SinhDataContext();
+                var record = (from ar in db.AdmissionRecords
+                              where ar.RecordID == recordID
+                              select ar).FirstOrDefault();
+
+                if (record != null)
+                {
+                    FormDetailHoSo frm = new FormDetailHoSo(record);
+                    frm.ShowDialog();
+                    LoadData();
+                }
+            }
         }
     }
 }

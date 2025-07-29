@@ -35,11 +35,8 @@ namespace QuanLyTuVanTuyenSinh
             this.label3 = new System.Windows.Forms.Label();
             this.lblFooter = new System.Windows.Forms.Label();
             this.btnDangNhap = new System.Windows.Forms.Button();
-            this.btnChuyenNganh = new System.Windows.Forms.Button();
-            this.btnTraCuu = new System.Windows.Forms.Button();
-            this.btnDangKy = new System.Windows.Forms.Button();
-            this.btnThongTin = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbMatKhau = new System.Windows.Forms.TextBox();
@@ -52,6 +49,7 @@ namespace QuanLyTuVanTuyenSinh
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -71,6 +69,7 @@ namespace QuanLyTuVanTuyenSinh
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 80);
             this.panelHeader.TabIndex = 3;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
             // 
             // label6
             // 
@@ -205,68 +204,27 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDangNhap.Text = "Đăng nhập";
             this.btnDangNhap.UseVisualStyleBackColor = false;
             // 
-            // btnChuyenNganh
-            // 
-            this.btnChuyenNganh.BackColor = System.Drawing.Color.Cyan;
-            this.btnChuyenNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChuyenNganh.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnChuyenNganh.Location = new System.Drawing.Point(12, 290);
-            this.btnChuyenNganh.Name = "btnChuyenNganh";
-            this.btnChuyenNganh.Size = new System.Drawing.Size(469, 50);
-            this.btnChuyenNganh.TabIndex = 3;
-            this.btnChuyenNganh.Text = "Chuyên ngành";
-            this.btnChuyenNganh.UseVisualStyleBackColor = false;
-            // 
-            // btnTraCuu
-            // 
-            this.btnTraCuu.BackColor = System.Drawing.Color.Cyan;
-            this.btnTraCuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTraCuu.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnTraCuu.Location = new System.Drawing.Point(12, 220);
-            this.btnTraCuu.Name = "btnTraCuu";
-            this.btnTraCuu.Size = new System.Drawing.Size(469, 50);
-            this.btnTraCuu.TabIndex = 2;
-            this.btnTraCuu.Text = "Tra cứu kết quả";
-            this.btnTraCuu.UseVisualStyleBackColor = false;
-            // 
-            // btnDangKy
-            // 
-            this.btnDangKy.BackColor = System.Drawing.Color.Cyan;
-            this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDangKy.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnDangKy.Location = new System.Drawing.Point(12, 150);
-            this.btnDangKy.Name = "btnDangKy";
-            this.btnDangKy.Size = new System.Drawing.Size(469, 50);
-            this.btnDangKy.TabIndex = 1;
-            this.btnDangKy.Text = "Đăng ký tuyển sinh";
-            this.btnDangKy.UseVisualStyleBackColor = false;
-            // 
-            // btnThongTin
-            // 
-            this.btnThongTin.BackColor = System.Drawing.Color.Cyan;
-            this.btnThongTin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThongTin.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnThongTin.Location = new System.Drawing.Point(12, 80);
-            this.btnThongTin.Name = "btnThongTin";
-            this.btnThongTin.Size = new System.Drawing.Size(469, 50);
-            this.btnThongTin.TabIndex = 0;
-            this.btnThongTin.Text = "Thông tin tuyển sinh";
-            this.btnThongTin.UseVisualStyleBackColor = false;
-            // 
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.LightCyan;
+            this.panelLeft.Controls.Add(this.pictureBox2);
             this.panelLeft.Controls.Add(this.panel1);
-            this.panelLeft.Controls.Add(this.btnThongTin);
-            this.panelLeft.Controls.Add(this.btnDangKy);
-            this.panelLeft.Controls.Add(this.btnTraCuu);
-            this.panelLeft.Controls.Add(this.btnChuyenNganh);
             this.panelLeft.Controls.Add(this.btnDangNhap);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 80);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(997, 362);
             this.panelLeft.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::QuanLyTuVanTuyenSinh.Properties.Resources.z6852218318795_47a6ff3d7d0353bc27ab88156c44397b;
+            this.pictureBox2.Location = new System.Drawing.Point(506, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(488, 350);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
             // 
             // panel1
             // 
@@ -279,15 +237,15 @@ namespace QuanLyTuVanTuyenSinh
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(997, 393);
+            this.panel1.Size = new System.Drawing.Size(500, 393);
             this.panel1.TabIndex = 7;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tbMatKhau);
-            this.groupBox2.Location = new System.Drawing.Point(89, 148);
+            this.groupBox2.Location = new System.Drawing.Point(37, 149);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(805, 52);
+            this.groupBox2.Size = new System.Drawing.Size(419, 52);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Mật khẩu";
@@ -302,16 +260,16 @@ namespace QuanLyTuVanTuyenSinh
             this.tbMatKhau.Location = new System.Drawing.Point(2, 16);
             this.tbMatKhau.Name = "tbMatKhau";
             this.tbMatKhau.PasswordChar = '*';
-            this.tbMatKhau.Size = new System.Drawing.Size(800, 31);
+            this.tbMatKhau.Size = new System.Drawing.Size(414, 31);
             this.tbMatKhau.TabIndex = 0;
             this.tbMatKhau.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tbTaiKhoan);
-            this.groupBox1.Location = new System.Drawing.Point(89, 66);
+            this.groupBox1.Location = new System.Drawing.Point(37, 66);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(805, 64);
+            this.groupBox1.Size = new System.Drawing.Size(419, 51);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tài khoản";
@@ -325,7 +283,7 @@ namespace QuanLyTuVanTuyenSinh
             this.tbTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTaiKhoan.Location = new System.Drawing.Point(2, 14);
             this.tbTaiKhoan.Name = "tbTaiKhoan";
-            this.tbTaiKhoan.Size = new System.Drawing.Size(800, 31);
+            this.tbTaiKhoan.Size = new System.Drawing.Size(414, 31);
             this.tbTaiKhoan.TabIndex = 1;
             this.tbTaiKhoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTaiKhoan.TextChanged += new System.EventHandler(this.tbTaiKhoan_TextChanged);
@@ -335,7 +293,7 @@ namespace QuanLyTuVanTuyenSinh
             this.lbDangKy.AutoSize = true;
             this.lbDangKy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbDangKy.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDangKy.Location = new System.Drawing.Point(446, 304);
+            this.lbDangKy.Location = new System.Drawing.Point(179, 312);
             this.lbDangKy.Name = "lbDangKy";
             this.lbDangKy.Size = new System.Drawing.Size(87, 28);
             this.lbDangKy.TabIndex = 5;
@@ -347,9 +305,9 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDN.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDN.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDN.ForeColor = System.Drawing.Color.White;
-            this.btnDN.Location = new System.Drawing.Point(89, 244);
+            this.btnDN.Location = new System.Drawing.Point(37, 243);
             this.btnDN.Name = "btnDN";
-            this.btnDN.Size = new System.Drawing.Size(808, 50);
+            this.btnDN.Size = new System.Drawing.Size(419, 50);
             this.btnDN.TabIndex = 4;
             this.btnDN.Text = "ĐĂNG NHẬP";
             this.btnDN.UseVisualStyleBackColor = false;
@@ -359,7 +317,7 @@ namespace QuanLyTuVanTuyenSinh
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(417, 25);
+            this.label5.Location = new System.Drawing.Point(138, 14);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(157, 38);
             this.label5.TabIndex = 0;
@@ -384,6 +342,7 @@ namespace QuanLyTuVanTuyenSinh
             this.panelFooter.ResumeLayout(false);
             this.panelFooter.PerformLayout();
             this.panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -394,10 +353,6 @@ namespace QuanLyTuVanTuyenSinh
 
         }
         private Button btnDangNhap;
-        private Button btnChuyenNganh;
-        private Button btnTraCuu;
-        private Button btnDangKy;
-        private Button btnThongTin;
         private Panel panelLeft;
         private Label label2;
         private Panel panel1;
@@ -412,6 +367,7 @@ namespace QuanLyTuVanTuyenSinh
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Label label6;
+        private PictureBox pictureBox2;
     }
 }
 

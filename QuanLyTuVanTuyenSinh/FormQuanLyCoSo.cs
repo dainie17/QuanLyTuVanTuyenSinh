@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+
 
 namespace QuanLyTuVanTuyenSinh
 {
@@ -14,6 +16,14 @@ namespace QuanLyTuVanTuyenSinh
     {
         QL_Tuyen_SinhDataContext db = new QL_Tuyen_SinhDataContext();
         int selectedID = -1;
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
 
         public FormQuanLyCoSo()
         {
@@ -96,9 +106,32 @@ namespace QuanLyTuVanTuyenSinh
                 var campus = db.Campus.FirstOrDefault(c => c.CampusID == campusId);
                 if (campus != null)
                 {
-                    var result = MessageBox.Show("Bạn có chắc muốn xoá cơ sở này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    var result = MessageBox.Show("Bạn có chắc muốn xoá cơ sở này cùng với tất cả ngành, hồ sơ và thanh toán liên quan?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
+                        // Lấy các ngành của cơ sở
+                        var majors = db.Majors.Where(m => m.CampusID == campus.CampusID).ToList();
+
+                        foreach (var major in majors)
+                        {
+                            // Lấy các hồ sơ tuyển sinh của ngành
+                            var records = db.AdmissionRecords.Where(r => r.MajorID == major.MajorID).ToList();
+
+                            foreach (var record in records)
+                            {
+                                // Xoá các thanh toán liên quan đến hồ sơ
+                                var payments = db.Payments.Where(p => p.RecordID == record.RecordID).ToList();
+                                db.Payments.DeleteAllOnSubmit(payments);
+
+                                // Xoá hồ sơ
+                                db.AdmissionRecords.DeleteOnSubmit(record);
+                            }
+
+                            // Xoá ngành
+                            db.Majors.DeleteOnSubmit(major);
+                        }
+
+                        // Xoá cơ sở
                         db.Campus.DeleteOnSubmit(campus);
                         db.SubmitChanges();
                         LoadData();
@@ -145,6 +178,12 @@ namespace QuanLyTuVanTuyenSinh
             FormMain frmMain = new FormMain();
             frmMain.Show();
             this.Close();
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
         }
     }
 }

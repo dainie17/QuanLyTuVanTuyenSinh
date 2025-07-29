@@ -371,6 +371,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDetailHoSo";
             this.Text = "Chi tiết hồ sơ";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormDetailHoSo_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -39,15 +39,15 @@ namespace QuanLyTuVanTuyenSinh
     partial void InsertCampus(Campus instance);
     partial void UpdateCampus(Campus instance);
     partial void DeleteCampus(Campus instance);
-    partial void InsertMajor(Major instance);
-    partial void UpdateMajor(Major instance);
-    partial void DeleteMajor(Major instance);
     partial void InsertAdmissionRecord(AdmissionRecord instance);
     partial void UpdateAdmissionRecord(AdmissionRecord instance);
     partial void DeleteAdmissionRecord(AdmissionRecord instance);
     partial void InsertPayment(Payment instance);
     partial void UpdatePayment(Payment instance);
     partial void DeletePayment(Payment instance);
+    partial void InsertMajor(Major instance);
+    partial void UpdateMajor(Major instance);
+    partial void DeleteMajor(Major instance);
     #endregion
 		
 		public QL_Tuyen_SinhDataContext() : 
@@ -104,14 +104,6 @@ namespace QuanLyTuVanTuyenSinh
 			}
 		}
 		
-		public System.Data.Linq.Table<Major> Majors
-		{
-			get
-			{
-				return this.GetTable<Major>();
-			}
-		}
-		
 		public System.Data.Linq.Table<AdmissionRecord> AdmissionRecords
 		{
 			get
@@ -125,6 +117,14 @@ namespace QuanLyTuVanTuyenSinh
 			get
 			{
 				return this.GetTable<Payment>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Major> Majors
+		{
+			get
+			{
+				return this.GetTable<Major>();
 			}
 		}
 	}
@@ -1021,233 +1021,6 @@ namespace QuanLyTuVanTuyenSinh
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Major")]
-	public partial class Major : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MajorID;
-		
-		private int _CampusID;
-		
-		private string _MajorName;
-		
-		private decimal _TuitionFee;
-		
-		private string _Description;
-		
-		private EntitySet<AdmissionRecord> _AdmissionRecords;
-		
-		private EntityRef<Campus> _Campus;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMajorIDChanging(int value);
-    partial void OnMajorIDChanged();
-    partial void OnCampusIDChanging(int value);
-    partial void OnCampusIDChanged();
-    partial void OnMajorNameChanging(string value);
-    partial void OnMajorNameChanged();
-    partial void OnTuitionFeeChanging(decimal value);
-    partial void OnTuitionFeeChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    #endregion
-		
-		public Major()
-		{
-			this._AdmissionRecords = new EntitySet<AdmissionRecord>(new Action<AdmissionRecord>(this.attach_AdmissionRecords), new Action<AdmissionRecord>(this.detach_AdmissionRecords));
-			this._Campus = default(EntityRef<Campus>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MajorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MajorID
-		{
-			get
-			{
-				return this._MajorID;
-			}
-			set
-			{
-				if ((this._MajorID != value))
-				{
-					this.OnMajorIDChanging(value);
-					this.SendPropertyChanging();
-					this._MajorID = value;
-					this.SendPropertyChanged("MajorID");
-					this.OnMajorIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CampusID", DbType="Int NOT NULL")]
-		public int CampusID
-		{
-			get
-			{
-				return this._CampusID;
-			}
-			set
-			{
-				if ((this._CampusID != value))
-				{
-					if (this._Campus.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCampusIDChanging(value);
-					this.SendPropertyChanging();
-					this._CampusID = value;
-					this.SendPropertyChanged("CampusID");
-					this.OnCampusIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MajorName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string MajorName
-		{
-			get
-			{
-				return this._MajorName;
-			}
-			set
-			{
-				if ((this._MajorName != value))
-				{
-					this.OnMajorNameChanging(value);
-					this.SendPropertyChanging();
-					this._MajorName = value;
-					this.SendPropertyChanged("MajorName");
-					this.OnMajorNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TuitionFee", DbType="Decimal(18,2) NOT NULL")]
-		public decimal TuitionFee
-		{
-			get
-			{
-				return this._TuitionFee;
-			}
-			set
-			{
-				if ((this._TuitionFee != value))
-				{
-					this.OnTuitionFeeChanging(value);
-					this.SendPropertyChanging();
-					this._TuitionFee = value;
-					this.SendPropertyChanged("TuitionFee");
-					this.OnTuitionFeeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Major_AdmissionRecord", Storage="_AdmissionRecords", ThisKey="MajorID", OtherKey="MajorID")]
-		public EntitySet<AdmissionRecord> AdmissionRecords
-		{
-			get
-			{
-				return this._AdmissionRecords;
-			}
-			set
-			{
-				this._AdmissionRecords.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Campus_Major", Storage="_Campus", ThisKey="CampusID", OtherKey="CampusID", IsForeignKey=true)]
-		public Campus Campus
-		{
-			get
-			{
-				return this._Campus.Entity;
-			}
-			set
-			{
-				Campus previousValue = this._Campus.Entity;
-				if (((previousValue != value) 
-							|| (this._Campus.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Campus.Entity = null;
-						previousValue.Majors.Remove(this);
-					}
-					this._Campus.Entity = value;
-					if ((value != null))
-					{
-						value.Majors.Add(this);
-						this._CampusID = value.CampusID;
-					}
-					else
-					{
-						this._CampusID = default(int);
-					}
-					this.SendPropertyChanged("Campus");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_AdmissionRecords(AdmissionRecord entity)
-		{
-			this.SendPropertyChanging();
-			entity.Major = this;
-		}
-		
-		private void detach_AdmissionRecords(AdmissionRecord entity)
-		{
-			this.SendPropertyChanging();
-			entity.Major = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AdmissionRecord")]
 	public partial class AdmissionRecord : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1276,11 +1049,11 @@ namespace QuanLyTuVanTuyenSinh
 		
 		private EntityRef<User> _User;
 		
-		private EntityRef<Major> _Major;
-		
 		private EntityRef<User> _User1;
 		
 		private EntityRef<StudentInfo> _StudentInfo;
+		
+		private EntityRef<Major> _Major;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1310,9 +1083,9 @@ namespace QuanLyTuVanTuyenSinh
 		{
 			this._Payments = new EntitySet<Payment>(new Action<Payment>(this.attach_Payments), new Action<Payment>(this.detach_Payments));
 			this._User = default(EntityRef<User>);
-			this._Major = default(EntityRef<Major>);
 			this._User1 = default(EntityRef<User>);
 			this._StudentInfo = default(EntityRef<StudentInfo>);
+			this._Major = default(EntityRef<Major>);
 			OnCreated();
 		}
 		
@@ -1559,40 +1332,6 @@ namespace QuanLyTuVanTuyenSinh
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Major_AdmissionRecord", Storage="_Major", ThisKey="MajorID", OtherKey="MajorID", IsForeignKey=true)]
-		public Major Major
-		{
-			get
-			{
-				return this._Major.Entity;
-			}
-			set
-			{
-				Major previousValue = this._Major.Entity;
-				if (((previousValue != value) 
-							|| (this._Major.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Major.Entity = null;
-						previousValue.AdmissionRecords.Remove(this);
-					}
-					this._Major.Entity = value;
-					if ((value != null))
-					{
-						value.AdmissionRecords.Add(this);
-						this._MajorID = value.MajorID;
-					}
-					else
-					{
-						this._MajorID = default(int);
-					}
-					this.SendPropertyChanged("Major");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_AdmissionRecord1", Storage="_User1", ThisKey="ParentUserID", OtherKey="UserID", IsForeignKey=true)]
 		public User User1
 		{
@@ -1657,6 +1396,40 @@ namespace QuanLyTuVanTuyenSinh
 						this._StudentInfoID = default(int);
 					}
 					this.SendPropertyChanged("StudentInfo");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Major_AdmissionRecord", Storage="_Major", ThisKey="MajorID", OtherKey="MajorID", IsForeignKey=true)]
+		public Major Major
+		{
+			get
+			{
+				return this._Major.Entity;
+			}
+			set
+			{
+				Major previousValue = this._Major.Entity;
+				if (((previousValue != value) 
+							|| (this._Major.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Major.Entity = null;
+						previousValue.AdmissionRecords.Remove(this);
+					}
+					this._Major.Entity = value;
+					if ((value != null))
+					{
+						value.AdmissionRecords.Add(this);
+						this._MajorID = value.MajorID;
+					}
+					else
+					{
+						this._MajorID = default(int);
+					}
+					this.SendPropertyChanged("Major");
 				}
 			}
 		}
@@ -1914,6 +1687,257 @@ namespace QuanLyTuVanTuyenSinh
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Major")]
+	public partial class Major : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MajorID;
+		
+		private int _CampusID;
+		
+		private string _MajorName;
+		
+		private decimal _TuitionFee;
+		
+		private string _Description;
+		
+		private string _ImagePath;
+		
+		private EntitySet<AdmissionRecord> _AdmissionRecords;
+		
+		private EntityRef<Campus> _Campus;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMajorIDChanging(int value);
+    partial void OnMajorIDChanged();
+    partial void OnCampusIDChanging(int value);
+    partial void OnCampusIDChanged();
+    partial void OnMajorNameChanging(string value);
+    partial void OnMajorNameChanged();
+    partial void OnTuitionFeeChanging(decimal value);
+    partial void OnTuitionFeeChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnImagePathChanging(string value);
+    partial void OnImagePathChanged();
+    #endregion
+		
+		public Major()
+		{
+			this._AdmissionRecords = new EntitySet<AdmissionRecord>(new Action<AdmissionRecord>(this.attach_AdmissionRecords), new Action<AdmissionRecord>(this.detach_AdmissionRecords));
+			this._Campus = default(EntityRef<Campus>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MajorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MajorID
+		{
+			get
+			{
+				return this._MajorID;
+			}
+			set
+			{
+				if ((this._MajorID != value))
+				{
+					this.OnMajorIDChanging(value);
+					this.SendPropertyChanging();
+					this._MajorID = value;
+					this.SendPropertyChanged("MajorID");
+					this.OnMajorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CampusID", DbType="Int NOT NULL")]
+		public int CampusID
+		{
+			get
+			{
+				return this._CampusID;
+			}
+			set
+			{
+				if ((this._CampusID != value))
+				{
+					if (this._Campus.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCampusIDChanging(value);
+					this.SendPropertyChanging();
+					this._CampusID = value;
+					this.SendPropertyChanged("CampusID");
+					this.OnCampusIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MajorName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string MajorName
+		{
+			get
+			{
+				return this._MajorName;
+			}
+			set
+			{
+				if ((this._MajorName != value))
+				{
+					this.OnMajorNameChanging(value);
+					this.SendPropertyChanging();
+					this._MajorName = value;
+					this.SendPropertyChanged("MajorName");
+					this.OnMajorNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TuitionFee", DbType="Decimal(18,2) NOT NULL")]
+		public decimal TuitionFee
+		{
+			get
+			{
+				return this._TuitionFee;
+			}
+			set
+			{
+				if ((this._TuitionFee != value))
+				{
+					this.OnTuitionFeeChanging(value);
+					this.SendPropertyChanging();
+					this._TuitionFee = value;
+					this.SendPropertyChanged("TuitionFee");
+					this.OnTuitionFeeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImagePath", DbType="NVarChar(255)")]
+		public string ImagePath
+		{
+			get
+			{
+				return this._ImagePath;
+			}
+			set
+			{
+				if ((this._ImagePath != value))
+				{
+					this.OnImagePathChanging(value);
+					this.SendPropertyChanging();
+					this._ImagePath = value;
+					this.SendPropertyChanged("ImagePath");
+					this.OnImagePathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Major_AdmissionRecord", Storage="_AdmissionRecords", ThisKey="MajorID", OtherKey="MajorID")]
+		public EntitySet<AdmissionRecord> AdmissionRecords
+		{
+			get
+			{
+				return this._AdmissionRecords;
+			}
+			set
+			{
+				this._AdmissionRecords.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Campus_Major", Storage="_Campus", ThisKey="CampusID", OtherKey="CampusID", IsForeignKey=true)]
+		public Campus Campus
+		{
+			get
+			{
+				return this._Campus.Entity;
+			}
+			set
+			{
+				Campus previousValue = this._Campus.Entity;
+				if (((previousValue != value) 
+							|| (this._Campus.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Campus.Entity = null;
+						previousValue.Majors.Remove(this);
+					}
+					this._Campus.Entity = value;
+					if ((value != null))
+					{
+						value.Majors.Add(this);
+						this._CampusID = value.CampusID;
+					}
+					else
+					{
+						this._CampusID = default(int);
+					}
+					this.SendPropertyChanged("Campus");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AdmissionRecords(AdmissionRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Major = this;
+		}
+		
+		private void detach_AdmissionRecords(AdmissionRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Major = null;
 		}
 	}
 }

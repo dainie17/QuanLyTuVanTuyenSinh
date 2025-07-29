@@ -50,12 +50,16 @@
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbHocPhi = new System.Windows.Forms.TextBox();
+            this.pbAnhNganh = new System.Windows.Forms.PictureBox();
+            this.btnChonAnh = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupB.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNganhHoc)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnhNganh)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -73,6 +77,7 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 64);
             this.panelHeader.TabIndex = 7;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
             // 
             // label7
             // 
@@ -156,7 +161,7 @@
             this.label3.BackColor = System.Drawing.Color.OrangeRed;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(574, 638);
+            this.label3.Location = new System.Drawing.Point(574, 773);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(397, 20);
             this.label3.TabIndex = 15;
@@ -168,7 +173,7 @@
             this.label4.BackColor = System.Drawing.Color.OrangeRed;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(668, 610);
+            this.label4.Location = new System.Drawing.Point(668, 745);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(303, 28);
             this.label4.TabIndex = 14;
@@ -180,7 +185,7 @@
             this.lblFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblFooter.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblFooter.ForeColor = System.Drawing.Color.White;
-            this.lblFooter.Location = new System.Drawing.Point(0, 601);
+            this.lblFooter.Location = new System.Drawing.Point(0, 737);
             this.lblFooter.Name = "lblFooter";
             this.lblFooter.Size = new System.Drawing.Size(1000, 64);
             this.lblFooter.TabIndex = 13;
@@ -217,7 +222,8 @@
             // 
             // groupB
             // 
-            this.groupB.Location = new System.Drawing.Point(563, 182);
+            this.groupB.Controls.Add(this.textBox1);
+            this.groupB.Location = new System.Drawing.Point(29, 301);
             this.groupB.Name = "groupB";
             this.groupB.Size = new System.Drawing.Size(408, 52);
             this.groupB.TabIndex = 16;
@@ -227,7 +233,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(563, 197);
+            this.textBox1.Location = new System.Drawing.Point(0, 17);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(408, 35);
@@ -245,7 +251,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Location = new System.Drawing.Point(563, 124);
+            this.groupBox2.Location = new System.Drawing.Point(29, 240);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(408, 52);
             this.groupBox2.TabIndex = 19;
@@ -255,7 +261,7 @@
             // dgvNganhHoc
             // 
             this.dgvNganhHoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNganhHoc.Location = new System.Drawing.Point(29, 291);
+            this.dgvNganhHoc.Location = new System.Drawing.Point(28, 410);
             this.dgvNganhHoc.Name = "dgvNganhHoc";
             this.dgvNganhHoc.RowHeadersWidth = 51;
             this.dgvNganhHoc.RowTemplate.Height = 24;
@@ -267,7 +273,7 @@
             this.btnThem.BackColor = System.Drawing.Color.OrangeRed;
             this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThem.ForeColor = System.Drawing.Color.White;
-            this.btnThem.Location = new System.Drawing.Point(29, 240);
+            this.btnThem.Location = new System.Drawing.Point(28, 359);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(408, 45);
             this.btnThem.TabIndex = 21;
@@ -280,7 +286,7 @@
             this.button2.BackColor = System.Drawing.Color.OrangeRed;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(563, 240);
+            this.button2.Location = new System.Drawing.Point(563, 359);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(407, 45);
             this.button2.TabIndex = 22;
@@ -307,12 +313,36 @@
             this.tbHocPhi.TabIndex = 2;
             this.tbHocPhi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // pbAnhNganh
+            // 
+            this.pbAnhNganh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pbAnhNganh.Location = new System.Drawing.Point(562, 124);
+            this.pbAnhNganh.Name = "pbAnhNganh";
+            this.pbAnhNganh.Size = new System.Drawing.Size(408, 188);
+            this.pbAnhNganh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAnhNganh.TabIndex = 23;
+            this.pbAnhNganh.TabStop = false;
+            // 
+            // btnChonAnh
+            // 
+            this.btnChonAnh.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnChonAnh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChonAnh.ForeColor = System.Drawing.Color.White;
+            this.btnChonAnh.Location = new System.Drawing.Point(563, 318);
+            this.btnChonAnh.Name = "btnChonAnh";
+            this.btnChonAnh.Size = new System.Drawing.Size(407, 35);
+            this.btnChonAnh.TabIndex = 24;
+            this.btnChonAnh.Text = "Chọn ảnh";
+            this.btnChonAnh.UseVisualStyleBackColor = false;
+            this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
+            // 
             // FormQuanLyNganhHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 665);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(1000, 801);
+            this.Controls.Add(this.btnChonAnh);
+            this.Controls.Add(this.pbAnhNganh);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.dgvNganhHoc);
@@ -333,10 +363,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupB.ResumeLayout(false);
+            this.groupB.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNganhHoc)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnhNganh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,5 +399,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tbHocPhi;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pbAnhNganh;
+        private System.Windows.Forms.Button btnChonAnh;
     }
 }

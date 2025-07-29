@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -18,6 +19,14 @@ namespace QuanLyTuVanTuyenSinh
         private string password;
         private string email;
         private string phone;
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
         public FormMain()
         {
             InitializeComponent();
@@ -57,18 +66,18 @@ namespace QuanLyTuVanTuyenSinh
                     btnQuanLyCoSo.Visible = true;
                     btnQuanLyNganh.Visible = true;
                     btnQuanLyTuyenSinh.Visible = true;
-                    btnDangXuat.Location = new Point(44, 225);
+                    btnDangXuat.Location = new Point(8, 225);
                     break;
 
                 case 2: // Phụ huynh
                     btnDangKyTkSv.Visible = true;
-                    btnDangKyTkSv.Location = new Point(44, 190);
+                    btnDangKyTkSv.Location = new Point(8, 190);
                     btnQuanLySv.Visible = true;
-                    btnQuanLySv.Location = new Point(44, 225);
+                    btnQuanLySv.Location = new Point(8, 225);
                     btnDangKyTuyenSinh.Visible = true;
                     btnNganhHoc.Visible = true;
                     btnXemKetQua.Visible = true;
-                    btnDangXuat.Location = new Point(44, 260);
+                    btnDangXuat.Location = new Point(8, 260);
                     break;
 
                 case 3: // Sinh viên
@@ -76,7 +85,7 @@ namespace QuanLyTuVanTuyenSinh
                     btnNganhHoc.Visible = true;
                     btnXemKetQua.Visible = true;
                     btnCapNhatTk.Visible = true;
-                    btnDangXuat.Location = new Point(44, 225);
+                    btnDangXuat.Location = new Point(8, 225);
                     break;
             }
 
@@ -177,6 +186,12 @@ namespace QuanLyTuVanTuyenSinh
             Session.Clear();
 
             this.Close();
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
         }
     }
 }

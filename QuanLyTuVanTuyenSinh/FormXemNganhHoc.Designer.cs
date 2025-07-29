@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -40,9 +41,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lbMoTa = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.pbAnhNganh = new System.Windows.Forms.PictureBox();
+            this.pnlDanhSachNganh = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnhNganh)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -60,6 +63,21 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 64);
             this.panelHeader.TabIndex = 6;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(952, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 34);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "X";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label1
             // 
@@ -188,25 +206,30 @@
             this.lbMoTa.TabIndex = 16;
             this.lbMoTa.Text = "Thông tin ngành";
             // 
-            // label7
+            // pbAnhNganh
             // 
-            this.label7.AutoSize = true;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(952, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 34);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "X";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.pbAnhNganh.Location = new System.Drawing.Point(580, 254);
+            this.pbAnhNganh.Name = "pbAnhNganh";
+            this.pbAnhNganh.Size = new System.Drawing.Size(361, 129);
+            this.pbAnhNganh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAnhNganh.TabIndex = 17;
+            this.pbAnhNganh.TabStop = false;
+            // 
+            // pnlDanhSachNganh
+            // 
+            this.pnlDanhSachNganh.AutoScroll = true;
+            this.pnlDanhSachNganh.Location = new System.Drawing.Point(60, 148);
+            this.pnlDanhSachNganh.Name = "pnlDanhSachNganh";
+            this.pnlDanhSachNganh.Size = new System.Drawing.Size(448, 235);
+            this.pnlDanhSachNganh.TabIndex = 18;
             // 
             // FormXemNganhHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 450);
+            this.Controls.Add(this.pnlDanhSachNganh);
+            this.Controls.Add(this.pbAnhNganh);
             this.Controls.Add(this.lbMoTa);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -221,6 +244,7 @@
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnhNganh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +265,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbMoTa;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pbAnhNganh;
+        private System.Windows.Forms.Panel pnlDanhSachNganh;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -39,7 +40,6 @@
             this.lblFooter = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvHoSo = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoSo)).BeginInit();
@@ -60,6 +60,21 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 64);
             this.panelHeader.TabIndex = 6;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(952, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 34);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "X";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label1
             // 
@@ -178,20 +193,7 @@
             this.dgvHoSo.Size = new System.Drawing.Size(940, 266);
             this.dgvHoSo.TabIndex = 14;
             this.dgvHoSo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoSo_CellClick);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(952, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 34);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "X";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.dgvHoSo.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoSo_CellContentDoubleClick);
             // 
             // FormFormQuanLyHoSo
             // 

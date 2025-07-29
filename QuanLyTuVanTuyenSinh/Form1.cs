@@ -7,12 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace QuanLyTuVanTuyenSinh
 {
     public partial class Form1 : Form
     {
         private QL_Tuyen_SinhDataContext db = new QL_Tuyen_SinhDataContext();
+
+        //Khai báo API để có thể kéo thả vị trí giao diện
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
         public Form1()
         {
             InitializeComponent();
@@ -83,6 +95,12 @@ namespace QuanLyTuVanTuyenSinh
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
         }
     }
 }

@@ -7,18 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+
 
 namespace QuanLyTuVanTuyenSinh
 {
     public partial class Form2 : Form
-    {
+    {   
+        //khai báo API để kéo thả giao diện
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+
         public Form2()
         {
             InitializeComponent();
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
-        {
+        {   
+            //khai báo các trường dữ liệu
             string username = tbTenDangNhap.Text.Trim();
             string password = tbMatKhau.Text.Trim();
             string email = tbEmail.Text.Trim();
@@ -94,6 +107,19 @@ namespace QuanLyTuVanTuyenSinh
         private void label6_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+        }
+
+        private void lbDangky_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
+            this.Hide();
         }
     }
 }

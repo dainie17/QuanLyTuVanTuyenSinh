@@ -51,12 +51,16 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pbAnhNganh = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbMoTa = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnhNganh)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -74,6 +78,7 @@ namespace QuanLyTuVanTuyenSinh
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 64);
             this.panelHeader.TabIndex = 6;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
             // 
             // label6
             // 
@@ -203,7 +208,7 @@ namespace QuanLyTuVanTuyenSinh
             this.cbbChonCoSo.Location = new System.Drawing.Point(6, 20);
             this.cbbChonCoSo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbChonCoSo.Name = "cbbChonCoSo";
-            this.cbbChonCoSo.Size = new System.Drawing.Size(796, 36);
+            this.cbbChonCoSo.Size = new System.Drawing.Size(395, 36);
             this.cbbChonCoSo.TabIndex = 14;
             this.cbbChonCoSo.SelectedIndexChanged += new System.EventHandler(this.cbbChonCoSo_SelectedIndexChanged);
             // 
@@ -214,8 +219,9 @@ namespace QuanLyTuVanTuyenSinh
             this.cbbChonNganh.Location = new System.Drawing.Point(6, 20);
             this.cbbChonNganh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbChonNganh.Name = "cbbChonNganh";
-            this.cbbChonNganh.Size = new System.Drawing.Size(796, 36);
+            this.cbbChonNganh.Size = new System.Drawing.Size(395, 36);
             this.cbbChonNganh.TabIndex = 15;
+            this.cbbChonNganh.SelectedIndexChanged += new System.EventHandler(this.cbbChonNganh_SelectedIndexChanged);
             // 
             // btnDangKyTs
             // 
@@ -236,7 +242,7 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox2.Controls.Add(this.tbDiemThi);
             this.groupBox2.Location = new System.Drawing.Point(90, 326);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(808, 58);
+            this.groupBox2.Size = new System.Drawing.Size(401, 58);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Điểm thi tốt nghiệp";
@@ -244,9 +250,9 @@ namespace QuanLyTuVanTuyenSinh
             // tbDiemThi
             // 
             this.tbDiemThi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDiemThi.Location = new System.Drawing.Point(0, 15);
+            this.tbDiemThi.Location = new System.Drawing.Point(6, 15);
             this.tbDiemThi.Name = "tbDiemThi";
-            this.tbDiemThi.Size = new System.Drawing.Size(808, 34);
+            this.tbDiemThi.Size = new System.Drawing.Size(395, 34);
             this.tbDiemThi.TabIndex = 10;
             this.tbDiemThi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -257,7 +263,7 @@ namespace QuanLyTuVanTuyenSinh
             this.cbbChonSinhVien.Location = new System.Drawing.Point(6, 20);
             this.cbbChonSinhVien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbChonSinhVien.Name = "cbbChonSinhVien";
-            this.cbbChonSinhVien.Size = new System.Drawing.Size(796, 36);
+            this.cbbChonSinhVien.Size = new System.Drawing.Size(395, 36);
             this.cbbChonSinhVien.TabIndex = 14;
             this.cbbChonSinhVien.SelectedIndexChanged += new System.EventHandler(this.cbbChonCoSo_SelectedIndexChanged);
             // 
@@ -266,7 +272,7 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox1.Controls.Add(this.cbbChonSinhVien);
             this.groupBox1.Location = new System.Drawing.Point(90, 118);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(808, 64);
+            this.groupBox1.Size = new System.Drawing.Size(401, 64);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chọn sinh viên";
@@ -276,7 +282,7 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox3.Controls.Add(this.cbbChonCoSo);
             this.groupBox3.Location = new System.Drawing.Point(90, 188);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(808, 62);
+            this.groupBox3.Size = new System.Drawing.Size(401, 62);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Chọn cơ sở";
@@ -286,16 +292,48 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox4.Controls.Add(this.cbbChonNganh);
             this.groupBox4.Location = new System.Drawing.Point(90, 256);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(808, 64);
+            this.groupBox4.Size = new System.Drawing.Size(401, 64);
             this.groupBox4.TabIndex = 24;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chọn ngành";
+            // 
+            // pbAnhNganh
+            // 
+            this.pbAnhNganh.Location = new System.Drawing.Point(497, 124);
+            this.pbAnhNganh.Name = "pbAnhNganh";
+            this.pbAnhNganh.Size = new System.Drawing.Size(401, 188);
+            this.pbAnhNganh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAnhNganh.TabIndex = 25;
+            this.pbAnhNganh.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(497, 347);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 25);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Mô tả:";
+            // 
+            // tbMoTa
+            // 
+            this.tbMoTa.AutoSize = true;
+            this.tbMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMoTa.Location = new System.Drawing.Point(570, 349);
+            this.tbMoTa.Name = "tbMoTa";
+            this.tbMoTa.Size = new System.Drawing.Size(54, 22);
+            this.tbMoTa.TabIndex = 27;
+            this.tbMoTa.Text = "mô tả";
             // 
             // FormDangKyTuyenSinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 537);
+            this.Controls.Add(this.tbMoTa);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.pbAnhNganh);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -318,6 +356,7 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnhNganh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +384,8 @@ namespace QuanLyTuVanTuyenSinh
         private GroupBox groupBox1;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
+        private PictureBox pbAnhNganh;
+        private Label label7;
+        private Label tbMoTa;
     }
 }

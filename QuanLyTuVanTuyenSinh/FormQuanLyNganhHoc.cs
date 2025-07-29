@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace QuanLyTuVanTuyenSinh
 {
@@ -14,6 +15,16 @@ namespace QuanLyTuVanTuyenSinh
     {
         QL_Tuyen_SinhDataContext db = new QL_Tuyen_SinhDataContext();
         int selectedMajorId = -1;
+        private string selectedImagePath = "";
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+
         public FormQuanLyNganhHoc()
         {
             InitializeComponent();
@@ -54,6 +65,17 @@ namespace QuanLyTuVanTuyenSinh
             }
         }
 
+        private void btnChonAnh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Ảnh (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                selectedImagePath = ofd.FileName;
+                pbAnhNganh.Image = Image.FromFile(selectedImagePath);
+            }
+        }
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbTenNganh.Text) || string.IsNullOrWhiteSpace(tbHocPhi.Text))
@@ -63,11 +85,12 @@ namespace QuanLyTuVanTuyenSinh
             }
 
             Major m = new Major
-            {
+            {   
                 MajorName = tbTenNganh.Text,
                 TuitionFee = decimal.Parse(tbHocPhi.Text),
                 Description = textBox1.Text,
-                CampusID = (int)comboBox1.SelectedValue
+                CampusID = (int)comboBox1.SelectedValue,
+                ImagePath = selectedImagePath
             };
             db.Majors.InsertOnSubmit(m);
             db.SubmitChanges();
@@ -106,6 +129,16 @@ namespace QuanLyTuVanTuyenSinh
                     var m = db.Majors.FirstOrDefault(x => x.MajorID == majorId);
                     if (m != null && MessageBox.Show("Xác nhận xoá?", "Cảnh báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
+                        // Tìm các hồ sơ liên quan đến ngành
+                        var relatedRecords = db.AdmissionRecords.Where(ar => ar.MajorID == m.MajorID).ToList();
+
+                        foreach (var record in relatedRecords)
+                        {
+                            var payments = db.Payments.Where(p => p.RecordID == record.RecordID).ToList();
+                            db.Payments.DeleteAllOnSubmit(payments);
+                            db.AdmissionRecords.DeleteOnSubmit(record);
+                        }
+
                         db.Majors.DeleteOnSubmit(m);
                         db.SubmitChanges();
                         LoadData();
@@ -118,6 +151,17 @@ namespace QuanLyTuVanTuyenSinh
                     tbHocPhi.Text = Convert.ToDecimal(dgvNganhHoc.Rows[e.RowIndex].Cells["TuitionFee"].Value).ToString("N0"); // Hiển thị dạng 14,000,000
                     textBox1.Text = dgvNganhHoc.Rows[e.RowIndex].Cells["Description"].Value.ToString();
                     comboBox1.Text = dgvNganhHoc.Rows[e.RowIndex].Cells["CampusName"].Value.ToString();
+                    
+                    var majorId = Convert.ToInt32(dgvNganhHoc.Rows[e.RowIndex].Cells["MajorID"].Value);
+                    var major = db.Majors.FirstOrDefault(x => x.MajorID == majorId);
+                    if (major != null)
+                    {
+                        selectedImagePath = major.ImagePath;
+                        if (!string.IsNullOrEmpty(selectedImagePath) && System.IO.File.Exists(selectedImagePath))
+                            pbAnhNganh.Image = Image.FromFile(selectedImagePath);
+                        else
+                            pbAnhNganh.Image = null;
+                    }
                 }
             }
         }
@@ -136,6 +180,12 @@ namespace QuanLyTuVanTuyenSinh
             FormMain frmMain = new FormMain();
             frmMain.Show();
             this.Close();
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
         }
     }
 }

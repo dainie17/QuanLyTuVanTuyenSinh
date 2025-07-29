@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace QuanLyTuVanTuyenSinh
 {
@@ -17,6 +20,16 @@ namespace QuanLyTuVanTuyenSinh
         private string password;
         private string email;
         private string phone;
+
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+
         public FormDangKyTuyenSinh()
         {
             InitializeComponent();
@@ -31,7 +44,11 @@ namespace QuanLyTuVanTuyenSinh
 
             if (Session.RoleID == 3) // Sinh viên
             {
+                groupBox1.Visible = false;
                 cbbChonSinhVien.Visible = false;
+                groupBox3.Location = new Point(66, 100);
+                groupBox4.Location = new Point(66, 180);
+
                 var student = db.StudentInfos.FirstOrDefault(s => s.StudentUserID == Session.UserID);
                 if (student == null)
                 {
@@ -182,6 +199,33 @@ namespace QuanLyTuVanTuyenSinh
             form.Show();
             this.Close();
 
+        }
+
+        private void cbbChonNganh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbChonNganh.SelectedValue is int majorId)
+            {
+                var major = db.Majors.FirstOrDefault(m => m.MajorID == majorId);
+                if (major != null)
+                {
+                    tbMoTa.Text = major.Description;
+
+                    if (!string.IsNullOrEmpty(major.ImagePath) && System.IO.File.Exists(major.ImagePath))
+                    {
+                        pbAnhNganh.Image = Image.FromFile(major.ImagePath);
+                    }
+                    else
+                    {
+                        pbAnhNganh.Image = null;
+                    }
+                }
+            }
+        }
+
+        private void panelHeader_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
         }
     }
 }

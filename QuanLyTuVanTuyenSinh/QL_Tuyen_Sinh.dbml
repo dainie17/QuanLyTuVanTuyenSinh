@@ -42,17 +42,6 @@
       <Association Name="Campus_Major" Member="Majors" ThisKey="CampusID" OtherKey="CampusID" Type="Major" />
     </Type>
   </Table>
-  <Table Name="dbo.Major" Member="Majors">
-    <Type Name="Major">
-      <Column Name="MajorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CampusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MajorName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="TuitionFee" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Major_AdmissionRecord" Member="AdmissionRecords" ThisKey="MajorID" OtherKey="MajorID" Type="AdmissionRecord" />
-      <Association Name="Campus_Major" Member="Campus" ThisKey="CampusID" OtherKey="CampusID" Type="Campus" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.AdmissionRecord" Member="AdmissionRecords">
     <Type Name="AdmissionRecord">
       <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -66,9 +55,9 @@
       <Column Name="ParentUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="AdmissionRecord_Payment" Member="Payments" ThisKey="RecordID" OtherKey="RecordID" Type="Payment" />
       <Association Name="User_AdmissionRecord" Member="User" ThisKey="ApprovedByAdminID" OtherKey="UserID" Type="User" IsForeignKey="true" />
-      <Association Name="Major_AdmissionRecord" Member="Major" ThisKey="MajorID" OtherKey="MajorID" Type="Major" IsForeignKey="true" />
       <Association Name="User_AdmissionRecord1" Member="User1" ThisKey="ParentUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
       <Association Name="StudentInfo_AdmissionRecord" Member="StudentInfo" ThisKey="StudentInfoID" OtherKey="InfoID" Type="StudentInfo" IsForeignKey="true" />
+      <Association Name="Major_AdmissionRecord" Member="Major" ThisKey="MajorID" OtherKey="MajorID" Type="Major" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Payment" Member="Payments">
@@ -80,6 +69,18 @@
       <Column Name="Method" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="AdmissionRecord_Payment" Member="AdmissionRecord" ThisKey="RecordID" OtherKey="RecordID" Type="AdmissionRecord" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Major" Member="Majors">
+    <Type Name="Major">
+      <Column Name="MajorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CampusID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MajorName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TuitionFee" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ImagePath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Major_AdmissionRecord" Member="AdmissionRecords" ThisKey="MajorID" OtherKey="MajorID" Type="AdmissionRecord" />
+      <Association Name="Campus_Major" Member="Campus" ThisKey="CampusID" OtherKey="CampusID" Type="Campus" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

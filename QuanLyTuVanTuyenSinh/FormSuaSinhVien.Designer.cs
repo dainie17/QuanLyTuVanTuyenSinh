@@ -44,10 +44,10 @@
             this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.rbNu = new System.Windows.Forms.RadioButton();
+            this.rbNam = new System.Windows.Forms.RadioButton();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnOut = new System.Windows.Forms.Button();
-            this.rbNam = new System.Windows.Forms.RadioButton();
-            this.rbNu = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -206,6 +206,28 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Giới tính";
             // 
+            // rbNu
+            // 
+            this.rbNu.AutoSize = true;
+            this.rbNu.Location = new System.Drawing.Point(237, 21);
+            this.rbNu.Name = "rbNu";
+            this.rbNu.Size = new System.Drawing.Size(45, 20);
+            this.rbNu.TabIndex = 3;
+            this.rbNu.TabStop = true;
+            this.rbNu.Text = "Nữ";
+            this.rbNu.UseVisualStyleBackColor = true;
+            // 
+            // rbNam
+            // 
+            this.rbNam.AutoSize = true;
+            this.rbNam.Location = new System.Drawing.Point(6, 21);
+            this.rbNam.Name = "rbNam";
+            this.rbNam.Size = new System.Drawing.Size(57, 20);
+            this.rbNam.TabIndex = 2;
+            this.rbNam.TabStop = true;
+            this.rbNam.Text = "Nam";
+            this.rbNam.UseVisualStyleBackColor = true;
+            // 
             // btnLuu
             // 
             this.btnLuu.BackColor = System.Drawing.Color.OrangeRed;
@@ -232,28 +254,6 @@
             this.btnOut.UseVisualStyleBackColor = false;
             this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
             // 
-            // rbNam
-            // 
-            this.rbNam.AutoSize = true;
-            this.rbNam.Location = new System.Drawing.Point(6, 21);
-            this.rbNam.Name = "rbNam";
-            this.rbNam.Size = new System.Drawing.Size(57, 20);
-            this.rbNam.TabIndex = 2;
-            this.rbNam.TabStop = true;
-            this.rbNam.Text = "Nam";
-            this.rbNam.UseVisualStyleBackColor = true;
-            // 
-            // rbNu
-            // 
-            this.rbNu.AutoSize = true;
-            this.rbNu.Location = new System.Drawing.Point(237, 21);
-            this.rbNu.Name = "rbNu";
-            this.rbNu.Size = new System.Drawing.Size(45, 20);
-            this.rbNu.TabIndex = 3;
-            this.rbNu.TabStop = true;
-            this.rbNu.Text = "Nữ";
-            this.rbNu.UseVisualStyleBackColor = true;
-            // 
             // FormSuaSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -274,6 +274,7 @@
             this.Name = "FormSuaSinhVien";
             this.Text = "Sửa sinh viên";
             this.Load += new System.EventHandler(this.FormSuaSinhVien_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormSuaSinhVien_MouseDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

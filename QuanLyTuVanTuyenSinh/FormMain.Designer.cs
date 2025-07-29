@@ -32,6 +32,7 @@ namespace QuanLyTuVanTuyenSinh
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -53,9 +54,10 @@ namespace QuanLyTuVanTuyenSinh
             this.btnCapNhatTk = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -73,6 +75,21 @@ namespace QuanLyTuVanTuyenSinh
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 64);
             this.panelHeader.TabIndex = 5;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(952, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 34);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "X";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label1
             // 
@@ -177,7 +194,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnQuanLyUser.BackColor = System.Drawing.Color.OrangeRed;
             this.btnQuanLyUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuanLyUser.ForeColor = System.Drawing.Color.White;
-            this.btnQuanLyUser.Location = new System.Drawing.Point(58, 101);
+            this.btnQuanLyUser.Location = new System.Drawing.Point(10, 101);
             this.btnQuanLyUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuanLyUser.Name = "btnQuanLyUser";
             this.btnQuanLyUser.Size = new System.Drawing.Size(419, 40);
@@ -191,7 +208,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnQuanLyCoSo.BackColor = System.Drawing.Color.OrangeRed;
             this.btnQuanLyCoSo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuanLyCoSo.ForeColor = System.Drawing.Color.White;
-            this.btnQuanLyCoSo.Location = new System.Drawing.Point(58, 146);
+            this.btnQuanLyCoSo.Location = new System.Drawing.Point(10, 146);
             this.btnQuanLyCoSo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuanLyCoSo.Name = "btnQuanLyCoSo";
             this.btnQuanLyCoSo.Size = new System.Drawing.Size(419, 40);
@@ -205,7 +222,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnQuanLyNganh.BackColor = System.Drawing.Color.OrangeRed;
             this.btnQuanLyNganh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuanLyNganh.ForeColor = System.Drawing.Color.White;
-            this.btnQuanLyNganh.Location = new System.Drawing.Point(58, 190);
+            this.btnQuanLyNganh.Location = new System.Drawing.Point(10, 190);
             this.btnQuanLyNganh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuanLyNganh.Name = "btnQuanLyNganh";
             this.btnQuanLyNganh.Size = new System.Drawing.Size(419, 40);
@@ -219,7 +236,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnQuanLyTuyenSinh.BackColor = System.Drawing.Color.OrangeRed;
             this.btnQuanLyTuyenSinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuanLyTuyenSinh.ForeColor = System.Drawing.Color.White;
-            this.btnQuanLyTuyenSinh.Location = new System.Drawing.Point(58, 234);
+            this.btnQuanLyTuyenSinh.Location = new System.Drawing.Point(10, 234);
             this.btnQuanLyTuyenSinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuanLyTuyenSinh.Name = "btnQuanLyTuyenSinh";
             this.btnQuanLyTuyenSinh.Size = new System.Drawing.Size(419, 40);
@@ -233,7 +250,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDangXuat.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDangXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangXuat.ForeColor = System.Drawing.Color.White;
-            this.btnDangXuat.Location = new System.Drawing.Point(58, 366);
+            this.btnDangXuat.Location = new System.Drawing.Point(10, 366);
             this.btnDangXuat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.Size = new System.Drawing.Size(419, 40);
@@ -247,7 +264,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDangKyTkSv.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDangKyTkSv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangKyTkSv.ForeColor = System.Drawing.Color.White;
-            this.btnDangKyTkSv.Location = new System.Drawing.Point(58, 278);
+            this.btnDangKyTkSv.Location = new System.Drawing.Point(10, 278);
             this.btnDangKyTkSv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangKyTkSv.Name = "btnDangKyTkSv";
             this.btnDangKyTkSv.Size = new System.Drawing.Size(419, 40);
@@ -261,7 +278,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnQuanLySv.BackColor = System.Drawing.Color.OrangeRed;
             this.btnQuanLySv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuanLySv.ForeColor = System.Drawing.Color.White;
-            this.btnQuanLySv.Location = new System.Drawing.Point(58, 322);
+            this.btnQuanLySv.Location = new System.Drawing.Point(10, 322);
             this.btnQuanLySv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuanLySv.Name = "btnQuanLySv";
             this.btnQuanLySv.Size = new System.Drawing.Size(419, 40);
@@ -275,7 +292,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDangKyTuyenSinh.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDangKyTuyenSinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangKyTuyenSinh.ForeColor = System.Drawing.Color.White;
-            this.btnDangKyTuyenSinh.Location = new System.Drawing.Point(58, 145);
+            this.btnDangKyTuyenSinh.Location = new System.Drawing.Point(10, 145);
             this.btnDangKyTuyenSinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangKyTuyenSinh.Name = "btnDangKyTuyenSinh";
             this.btnDangKyTuyenSinh.Size = new System.Drawing.Size(419, 40);
@@ -289,7 +306,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnNganhHoc.BackColor = System.Drawing.Color.OrangeRed;
             this.btnNganhHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNganhHoc.ForeColor = System.Drawing.Color.White;
-            this.btnNganhHoc.Location = new System.Drawing.Point(58, 99);
+            this.btnNganhHoc.Location = new System.Drawing.Point(10, 99);
             this.btnNganhHoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNganhHoc.Name = "btnNganhHoc";
             this.btnNganhHoc.Size = new System.Drawing.Size(419, 40);
@@ -303,7 +320,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnXemKetQua.BackColor = System.Drawing.Color.OrangeRed;
             this.btnXemKetQua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXemKetQua.ForeColor = System.Drawing.Color.White;
-            this.btnXemKetQua.Location = new System.Drawing.Point(58, 190);
+            this.btnXemKetQua.Location = new System.Drawing.Point(10, 190);
             this.btnXemKetQua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXemKetQua.Name = "btnXemKetQua";
             this.btnXemKetQua.Size = new System.Drawing.Size(419, 40);
@@ -317,7 +334,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnCapNhatTk.BackColor = System.Drawing.Color.OrangeRed;
             this.btnCapNhatTk.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCapNhatTk.ForeColor = System.Drawing.Color.White;
-            this.btnCapNhatTk.Location = new System.Drawing.Point(58, 234);
+            this.btnCapNhatTk.Location = new System.Drawing.Point(10, 234);
             this.btnCapNhatTk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCapNhatTk.Name = "btnCapNhatTk";
             this.btnCapNhatTk.Size = new System.Drawing.Size(419, 40);
@@ -330,7 +347,7 @@ namespace QuanLyTuVanTuyenSinh
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(685, 101);
+            this.label5.Location = new System.Drawing.Point(711, 99);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(260, 38);
             this.label5.TabIndex = 23;
@@ -339,33 +356,30 @@ namespace QuanLyTuVanTuyenSinh
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(537, 146);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(596, 137);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(408, 84);
+            this.label6.Size = new System.Drawing.Size(375, 75);
             this.label6.TabIndex = 24;
             this.label6.Text = "Các ngành học bắt kịp xu hướng tuyển dụng, \nphù hợp với nhu cầu nhân lực tại các " +
     "khu vực\n phát triển du lịch, dịch vụ và công nghệ cao";
             // 
-            // label7
+            // pictureBox2
             // 
-            this.label7.AutoSize = true;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(952, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 34);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "X";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.pictureBox2.Image = global::QuanLyTuVanTuyenSinh.Properties.Resources.z6852218318795_47a6ff3d7d0353bc27ab88156c44397b;
+            this.pictureBox2.Location = new System.Drawing.Point(483, 215);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(505, 191);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 25;
+            this.pictureBox2.TabStop = false;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 496);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCapNhatTk);
@@ -391,6 +405,7 @@ namespace QuanLyTuVanTuyenSinh
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,5 +436,6 @@ namespace QuanLyTuVanTuyenSinh
         private Label label5;
         private Label label6;
         private Label label7;
+        private PictureBox pictureBox2;
     }
 }

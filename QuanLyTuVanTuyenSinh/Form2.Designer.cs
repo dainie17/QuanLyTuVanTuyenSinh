@@ -53,9 +53,9 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbTenDangNhap = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbPhuHuynh = new System.Windows.Forms.RadioButton();
             this.cbSinhVien = new System.Windows.Forms.RadioButton();
+            this.cbPhuHuynh = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -80,6 +80,7 @@ namespace QuanLyTuVanTuyenSinh
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1000, 80);
             this.panelHeader.TabIndex = 4;
+            this.panelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseDown);
             // 
             // label6
             // 
@@ -178,6 +179,7 @@ namespace QuanLyTuVanTuyenSinh
             this.lbDangky.Size = new System.Drawing.Size(112, 28);
             this.lbDangky.TabIndex = 5;
             this.lbDangky.Text = "Đăng nhập";
+            this.lbDangky.Click += new System.EventHandler(this.lbDangky_Click);
             // 
             // lblFooter
             // 
@@ -325,15 +327,17 @@ namespace QuanLyTuVanTuyenSinh
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chọn vai trò";
             // 
-            // label5
+            // cbSinhVien
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(429, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 38);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Đăng ký ";
+            this.cbSinhVien.AutoSize = true;
+            this.cbSinhVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSinhVien.Location = new System.Drawing.Point(291, 21);
+            this.cbSinhVien.Name = "cbSinhVien";
+            this.cbSinhVien.Size = new System.Drawing.Size(114, 29);
+            this.cbSinhVien.TabIndex = 3;
+            this.cbSinhVien.TabStop = true;
+            this.cbSinhVien.Text = "Sinh viên";
+            this.cbSinhVien.UseVisualStyleBackColor = true;
             // 
             // cbPhuHuynh
             // 
@@ -347,17 +351,15 @@ namespace QuanLyTuVanTuyenSinh
             this.cbPhuHuynh.Text = "Phụ huynh";
             this.cbPhuHuynh.UseVisualStyleBackColor = true;
             // 
-            // cbSinhVien
+            // label5
             // 
-            this.cbSinhVien.AutoSize = true;
-            this.cbSinhVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSinhVien.Location = new System.Drawing.Point(291, 21);
-            this.cbSinhVien.Name = "cbSinhVien";
-            this.cbSinhVien.Size = new System.Drawing.Size(114, 29);
-            this.cbSinhVien.TabIndex = 3;
-            this.cbSinhVien.TabStop = true;
-            this.cbSinhVien.Text = "Sinh viên";
-            this.cbSinhVien.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(429, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(134, 38);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Đăng ký ";
             // 
             // Form2
             // 

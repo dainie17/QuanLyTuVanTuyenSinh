@@ -53,13 +53,66 @@ namespace QuanLyTuVanTuyenSinh
             using (var db = new QL_Tuyen_SinhDataContext())
             {
                 var payment = db.Payments
-                                .Where(p => p.RecordID == recordId)
+                                .Where(p => p.RecordID == recordId && p.Status == 1)
                                 .OrderByDescending(p => p.PaymentDate)
-                                .FirstOrDefault(); // Lấy lần thanh toán mới nhất
+                                .FirstOrDefault();
 
-                lbThanhToan.Text = payment != null && payment.Status == 1 ? "Đã thanh toán" : "Chưa";
+                bool daThanhToan = payment != null;
+
+                lbThanhToan.Text = daThanhToan ? "Đã thanh toán" : "Chưa";
                 lbNgayThanhToan.Text = payment?.PaymentDate.ToString("dd/MM/yyyy") ?? "-";
                 lbPhuongThuc.Text = payment != null ? GetPaymentMethodName(payment.Method) : "-";
+
+                // Ẩn các nút đánh giá nếu đã thanh toán
+                if (daThanhToan)
+                {
+                    btnDau.Visible = false;
+                    btnRot.Visible = false;
+                    label13.Visible = false;
+                }
+
+                // Hiển thị ảnh bill nếu có
+                if (!string.IsNullOrEmpty(payment?.BillImagePath) && System.IO.File.Exists(payment.BillImagePath))
+                {
+                    pbBill.Image = Image.FromFile(payment.BillImagePath);
+                }
+                else
+                {
+                    pbBill.Image = null;
+                }
+
+                // Kiểm tra nếu đã đánh giá thì cho phép sửa thanh toán (nếu là Admin)
+                if (_record.ResultStatus == 1 || _record.ResultStatus == 3)
+                {
+                    cbbPhuongThucSua.Visible = true;
+                    dtNgayThanhToan.Visible = true;
+                    btnLuuThanhToan.Visible = true;
+
+                    if (payment != null && payment.Method != 2)
+                    {
+                       
+                        cbbPhuongThucSua.SelectedValue = payment.Method;                    
+                        dtNgayThanhToan.Value = payment.PaymentDate;
+                        btnLuuThanhToan.Tag = payment.PaymentID;
+
+                        cbbPhuongThucSua.DisplayMember = "Text";
+                        cbbPhuongThucSua.ValueMember = "Value";
+                        cbbPhuongThucSua.DataSource = new[]
+                        {
+                      new { Text = "Tiền mặt", Value = 1 },
+                      new { Text = "Chuyển khoản", Value = 2 },
+                       new { Text = "Thẻ", Value = 3 }
+                    };
+                    }
+                    else
+                    {
+                        cbbPhuongThucSua.Visible = false;
+                        dtNgayThanhToan.Visible = false;
+                        btnLuuThanhToan.Visible = false;
+                        dtNgayThanhToan.Value = DateTime.Now;
+                    }
+                }
+
             }
         }
 
@@ -71,6 +124,25 @@ namespace QuanLyTuVanTuyenSinh
                 case 2: return "Chuyển khoản";
                 case 3: return "Thẻ";
                 default: return "Không xác định";
+            }
+        }
+
+        private void btnLuuThanhToan_Click(object sender, EventArgs e)
+        {
+            if (btnLuuThanhToan.Tag is int paymentId)
+            {
+                using (var db = new QL_Tuyen_SinhDataContext())
+                {
+                    var payment = db.Payments.FirstOrDefault(p => p.PaymentID == paymentId);
+                    if (payment != null)
+                    {
+                        payment.Method = (byte)(cbbPhuongThucSua.SelectedIndex + 1);
+                        payment.PaymentDate = dtNgayThanhToan.Value;
+                        db.SubmitChanges();
+                        MessageBox.Show("Cập nhật thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadPaymentInfo(_recordId); // Refresh lại
+                    }
+                }
             }
         }
 

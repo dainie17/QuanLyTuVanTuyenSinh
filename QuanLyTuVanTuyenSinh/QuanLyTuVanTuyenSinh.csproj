@@ -125,6 +125,12 @@
     <Compile Include="FormTaoTaiKhoanSinhVien.Designer.cs">
       <DependentUpon>FormTaoTaiKhoanSinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUploadBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUploadBill.Designer.cs">
+      <DependentUpon>FormUploadBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormXemKetQua.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     <EmbeddedResource Include="FormTaoTaiKhoanSinhVien.resx">
       <DependentUpon>FormTaoTaiKhoanSinhVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormUploadBill.resx">
+      <DependentUpon>FormUploadBill.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormXemKetQua.resx">
       <DependentUpon>FormXemKetQua.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\z6852218318795_47a6ff3d7d0353bc27ab88156c44397b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\qrcode-default.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -60,17 +60,6 @@
       <Association Name="Major_AdmissionRecord" Member="Major" ThisKey="MajorID" OtherKey="MajorID" Type="Major" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Payment" Member="Payments">
-    <Type Name="Payment">
-      <Column Name="PaymentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="PaymentDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
-      <Column Name="Method" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="AdmissionRecord_Payment" Member="AdmissionRecord" ThisKey="RecordID" OtherKey="RecordID" Type="AdmissionRecord" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Major" Member="Majors">
     <Type Name="Major">
       <Column Name="MajorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -81,6 +70,18 @@
       <Column Name="ImagePath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Major_AdmissionRecord" Member="AdmissionRecords" ThisKey="MajorID" OtherKey="MajorID" Type="AdmissionRecord" />
       <Association Name="Campus_Major" Member="Campus" ThisKey="CampusID" OtherKey="CampusID" Type="Campus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="PaymentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="PaymentDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="Method" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="BillImagePath" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="AdmissionRecord_Payment" Member="AdmissionRecord" ThisKey="RecordID" OtherKey="RecordID" Type="AdmissionRecord" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

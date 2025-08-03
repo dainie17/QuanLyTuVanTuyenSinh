@@ -42,12 +42,12 @@ namespace QuanLyTuVanTuyenSinh
     partial void InsertAdmissionRecord(AdmissionRecord instance);
     partial void UpdateAdmissionRecord(AdmissionRecord instance);
     partial void DeleteAdmissionRecord(AdmissionRecord instance);
-    partial void InsertPayment(Payment instance);
-    partial void UpdatePayment(Payment instance);
-    partial void DeletePayment(Payment instance);
     partial void InsertMajor(Major instance);
     partial void UpdateMajor(Major instance);
     partial void DeleteMajor(Major instance);
+    partial void InsertPayment(Payment instance);
+    partial void UpdatePayment(Payment instance);
+    partial void DeletePayment(Payment instance);
     #endregion
 		
 		public QL_Tuyen_SinhDataContext() : 
@@ -112,19 +112,19 @@ namespace QuanLyTuVanTuyenSinh
 			}
 		}
 		
-		public System.Data.Linq.Table<Payment> Payments
-		{
-			get
-			{
-				return this.GetTable<Payment>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Major> Majors
 		{
 			get
 			{
 				return this.GetTable<Major>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Payment> Payments
+		{
+			get
+			{
+				return this.GetTable<Payment>();
 			}
 		}
 	}
@@ -1467,229 +1467,6 @@ namespace QuanLyTuVanTuyenSinh
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Payment")]
-	public partial class Payment : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PaymentID;
-		
-		private int _RecordID;
-		
-		private decimal _Amount;
-		
-		private System.DateTime _PaymentDate;
-		
-		private byte _Method;
-		
-		private byte _Status;
-		
-		private EntityRef<AdmissionRecord> _AdmissionRecord;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPaymentIDChanging(int value);
-    partial void OnPaymentIDChanged();
-    partial void OnRecordIDChanging(int value);
-    partial void OnRecordIDChanged();
-    partial void OnAmountChanging(decimal value);
-    partial void OnAmountChanged();
-    partial void OnPaymentDateChanging(System.DateTime value);
-    partial void OnPaymentDateChanged();
-    partial void OnMethodChanging(byte value);
-    partial void OnMethodChanged();
-    partial void OnStatusChanging(byte value);
-    partial void OnStatusChanged();
-    #endregion
-		
-		public Payment()
-		{
-			this._AdmissionRecord = default(EntityRef<AdmissionRecord>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int PaymentID
-		{
-			get
-			{
-				return this._PaymentID;
-			}
-			set
-			{
-				if ((this._PaymentID != value))
-				{
-					this.OnPaymentIDChanging(value);
-					this.SendPropertyChanging();
-					this._PaymentID = value;
-					this.SendPropertyChanged("PaymentID");
-					this.OnPaymentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", DbType="Int NOT NULL")]
-		public int RecordID
-		{
-			get
-			{
-				return this._RecordID;
-			}
-			set
-			{
-				if ((this._RecordID != value))
-				{
-					if (this._AdmissionRecord.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRecordIDChanging(value);
-					this.SendPropertyChanging();
-					this._RecordID = value;
-					this.SendPropertyChanged("RecordID");
-					this.OnRecordIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal(18,2) NOT NULL")]
-		public decimal Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentDate", DbType="DateTime2 NOT NULL")]
-		public System.DateTime PaymentDate
-		{
-			get
-			{
-				return this._PaymentDate;
-			}
-			set
-			{
-				if ((this._PaymentDate != value))
-				{
-					this.OnPaymentDateChanging(value);
-					this.SendPropertyChanging();
-					this._PaymentDate = value;
-					this.SendPropertyChanged("PaymentDate");
-					this.OnPaymentDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Method", DbType="TinyInt NOT NULL")]
-		public byte Method
-		{
-			get
-			{
-				return this._Method;
-			}
-			set
-			{
-				if ((this._Method != value))
-				{
-					this.OnMethodChanging(value);
-					this.SendPropertyChanging();
-					this._Method = value;
-					this.SendPropertyChanged("Method");
-					this.OnMethodChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AdmissionRecord_Payment", Storage="_AdmissionRecord", ThisKey="RecordID", OtherKey="RecordID", IsForeignKey=true)]
-		public AdmissionRecord AdmissionRecord
-		{
-			get
-			{
-				return this._AdmissionRecord.Entity;
-			}
-			set
-			{
-				AdmissionRecord previousValue = this._AdmissionRecord.Entity;
-				if (((previousValue != value) 
-							|| (this._AdmissionRecord.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AdmissionRecord.Entity = null;
-						previousValue.Payments.Remove(this);
-					}
-					this._AdmissionRecord.Entity = value;
-					if ((value != null))
-					{
-						value.Payments.Add(this);
-						this._RecordID = value.RecordID;
-					}
-					else
-					{
-						this._RecordID = default(int);
-					}
-					this.SendPropertyChanged("AdmissionRecord");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Major")]
 	public partial class Major : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1938,6 +1715,253 @@ namespace QuanLyTuVanTuyenSinh
 		{
 			this.SendPropertyChanging();
 			entity.Major = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Payment")]
+	public partial class Payment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PaymentID;
+		
+		private int _RecordID;
+		
+		private decimal _Amount;
+		
+		private System.DateTime _PaymentDate;
+		
+		private byte _Method;
+		
+		private byte _Status;
+		
+		private string _BillImagePath;
+		
+		private EntityRef<AdmissionRecord> _AdmissionRecord;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPaymentIDChanging(int value);
+    partial void OnPaymentIDChanged();
+    partial void OnRecordIDChanging(int value);
+    partial void OnRecordIDChanged();
+    partial void OnAmountChanging(decimal value);
+    partial void OnAmountChanged();
+    partial void OnPaymentDateChanging(System.DateTime value);
+    partial void OnPaymentDateChanged();
+    partial void OnMethodChanging(byte value);
+    partial void OnMethodChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    partial void OnBillImagePathChanging(string value);
+    partial void OnBillImagePathChanged();
+    #endregion
+		
+		public Payment()
+		{
+			this._AdmissionRecord = default(EntityRef<AdmissionRecord>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PaymentID
+		{
+			get
+			{
+				return this._PaymentID;
+			}
+			set
+			{
+				if ((this._PaymentID != value))
+				{
+					this.OnPaymentIDChanging(value);
+					this.SendPropertyChanging();
+					this._PaymentID = value;
+					this.SendPropertyChanged("PaymentID");
+					this.OnPaymentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", DbType="Int NOT NULL")]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					if (this._AdmissionRecord.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRecordIDChanging(value);
+					this.SendPropertyChanging();
+					this._RecordID = value;
+					this.SendPropertyChanged("RecordID");
+					this.OnRecordIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PaymentDate", DbType="DateTime2 NOT NULL")]
+		public System.DateTime PaymentDate
+		{
+			get
+			{
+				return this._PaymentDate;
+			}
+			set
+			{
+				if ((this._PaymentDate != value))
+				{
+					this.OnPaymentDateChanging(value);
+					this.SendPropertyChanging();
+					this._PaymentDate = value;
+					this.SendPropertyChanged("PaymentDate");
+					this.OnPaymentDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Method", DbType="TinyInt NOT NULL")]
+		public byte Method
+		{
+			get
+			{
+				return this._Method;
+			}
+			set
+			{
+				if ((this._Method != value))
+				{
+					this.OnMethodChanging(value);
+					this.SendPropertyChanging();
+					this._Method = value;
+					this.SendPropertyChanged("Method");
+					this.OnMethodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillImagePath", DbType="NVarChar(MAX)")]
+		public string BillImagePath
+		{
+			get
+			{
+				return this._BillImagePath;
+			}
+			set
+			{
+				if ((this._BillImagePath != value))
+				{
+					this.OnBillImagePathChanging(value);
+					this.SendPropertyChanging();
+					this._BillImagePath = value;
+					this.SendPropertyChanged("BillImagePath");
+					this.OnBillImagePathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AdmissionRecord_Payment", Storage="_AdmissionRecord", ThisKey="RecordID", OtherKey="RecordID", IsForeignKey=true)]
+		public AdmissionRecord AdmissionRecord
+		{
+			get
+			{
+				return this._AdmissionRecord.Entity;
+			}
+			set
+			{
+				AdmissionRecord previousValue = this._AdmissionRecord.Entity;
+				if (((previousValue != value) 
+							|| (this._AdmissionRecord.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AdmissionRecord.Entity = null;
+						previousValue.Payments.Remove(this);
+					}
+					this._AdmissionRecord.Entity = value;
+					if ((value != null))
+					{
+						value.Payments.Add(this);
+						this._RecordID = value.RecordID;
+					}
+					else
+					{
+						this._RecordID = default(int);
+					}
+					this.SendPropertyChanged("AdmissionRecord");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

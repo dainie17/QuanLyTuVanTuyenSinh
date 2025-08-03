@@ -44,7 +44,6 @@ namespace QuanLyTuVanTuyenSinh
             this.label5 = new System.Windows.Forms.Label();
             this.cbbChonCoSo = new System.Windows.Forms.ComboBox();
             this.cbbChonNganh = new System.Windows.Forms.ComboBox();
-            this.btnDangKyTs = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbDiemThi = new System.Windows.Forms.TextBox();
             this.cbbChonSinhVien = new System.Windows.Forms.ComboBox();
@@ -54,6 +53,7 @@ namespace QuanLyTuVanTuyenSinh
             this.pbAnhNganh = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tbMoTa = new System.Windows.Forms.Label();
+            this.btnDangKyTs = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -223,20 +223,6 @@ namespace QuanLyTuVanTuyenSinh
             this.cbbChonNganh.TabIndex = 15;
             this.cbbChonNganh.SelectedIndexChanged += new System.EventHandler(this.cbbChonNganh_SelectedIndexChanged);
             // 
-            // btnDangKyTs
-            // 
-            this.btnDangKyTs.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnDangKyTs.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDangKyTs.ForeColor = System.Drawing.Color.White;
-            this.btnDangKyTs.Location = new System.Drawing.Point(90, 401);
-            this.btnDangKyTs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDangKyTs.Name = "btnDangKyTs";
-            this.btnDangKyTs.Size = new System.Drawing.Size(808, 49);
-            this.btnDangKyTs.TabIndex = 16;
-            this.btnDangKyTs.Text = "Đăng ký ngay";
-            this.btnDangKyTs.UseVisualStyleBackColor = false;
-            this.btnDangKyTs.Click += new System.EventHandler(this.btnDangKyTs_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tbDiemThi);
@@ -326,11 +312,25 @@ namespace QuanLyTuVanTuyenSinh
             this.tbMoTa.TabIndex = 27;
             this.tbMoTa.Text = "mô tả";
             // 
+            // btnDangKyTs
+            // 
+            this.btnDangKyTs.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDangKyTs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDangKyTs.ForeColor = System.Drawing.Color.White;
+            this.btnDangKyTs.Location = new System.Drawing.Point(96, 400);
+            this.btnDangKyTs.Name = "btnDangKyTs";
+            this.btnDangKyTs.Size = new System.Drawing.Size(802, 55);
+            this.btnDangKyTs.TabIndex = 28;
+            this.btnDangKyTs.Text = "Đăng ký";
+            this.btnDangKyTs.UseVisualStyleBackColor = false;
+            this.btnDangKyTs.Click += new System.EventHandler(this.btnDangKyTs_Click);
+            // 
             // FormDangKyTuyenSinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 537);
+            this.Controls.Add(this.btnDangKyTs);
             this.Controls.Add(this.tbMoTa);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pbAnhNganh);
@@ -338,7 +338,6 @@ namespace QuanLyTuVanTuyenSinh
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnDangKyTs);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -376,7 +375,6 @@ namespace QuanLyTuVanTuyenSinh
         private Label label5;
         private ComboBox cbbChonCoSo;
         private ComboBox cbbChonNganh;
-        private Button btnDangKyTs;
         private GroupBox groupBox2;
         private TextBox tbDiemThi;
         private ComboBox cbbChonSinhVien;
@@ -387,5 +385,6 @@ namespace QuanLyTuVanTuyenSinh
         private PictureBox pbAnhNganh;
         private Label label7;
         private Label tbMoTa;
+        private Button btnDangKyTs;
     }
 }

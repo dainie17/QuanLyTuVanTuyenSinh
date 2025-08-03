@@ -63,6 +63,16 @@ namespace QuanLyTuVanTuyenSinh.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap qrcode_default {
+            get {
+                object obj = ResourceManager.GetObject("qrcode-default", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap z6852218318795_47a6ff3d7d0353bc27ab88156c44397b {
             get {
                 object obj = ResourceManager.GetObject("z6852218318795_47a6ff3d7d0353bc27ab88156c44397b", resourceCulture);

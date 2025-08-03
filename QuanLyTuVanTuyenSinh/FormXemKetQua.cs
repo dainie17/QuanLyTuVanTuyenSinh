@@ -160,34 +160,47 @@ namespace QuanLyTuVanTuyenSinh
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            if (currentRecord == null)
+            if (currentRecord == null || cbbPhuongThuc.SelectedValue == null)
             {
-                MessageBox.Show("Không có hồ sơ tuyển sinh.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Thông tin không hợp lệ.");
                 return;
             }
 
-            if (cbbPhuongThuc.SelectedValue == null)
+            var method = (byte)(int)cbbPhuongThuc.SelectedValue;
+            string imagePath = null;
+
+            if (method == 2) // Chuyển khoản
             {
-                MessageBox.Show("Vui lòng chọn phương thức thanh toán.");
-                return;
+                Form qrForm = new Form();
+                qrForm.Text = "Quét mã QR";
+                qrForm.ClientSize = new Size(300, 300);
+                qrForm.Controls.Add(new PictureBox
+                {
+                    Image = global::QuanLyTuVanTuyenSinh.Properties.Resources.qrcode_default, // thay đường dẫn nếu cần
+                    Dock = DockStyle.Fill,
+                    SizeMode = PictureBoxSizeMode.StretchImage
+                });
+                qrForm.ShowDialog();
+
+                FormUploadBill formUpload = new FormUploadBill();
+                if (formUpload.ShowDialog() != DialogResult.OK) return;
+
+                imagePath = formUpload.SelectedImagePath;
             }
 
             var major = db.Majors.FirstOrDefault(m => m.MajorID == currentRecord.MajorID);
-            var amount = major?.TuitionFee ?? 0;
-            var method = (byte)(int)cbbPhuongThuc.SelectedValue;
-
-            Payment newPayment = new Payment
+            var newPayment = new Payment
             {
                 RecordID = currentRecord.RecordID,
-                Amount = amount,
+                Amount = major?.TuitionFee ?? 0,
                 Method = method,
                 PaymentDate = DateTime.Now,
-                Status = 1
+                Status = 1,
+                BillImagePath = imagePath
             };
 
             db.Payments.InsertOnSubmit(newPayment);
             db.SubmitChanges();
-
             MessageBox.Show("Thanh toán thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadRecordAndUI(currentStudentInfoID);
         }

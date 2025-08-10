@@ -350,6 +350,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormQuanLyCoSo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý cơ sở";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

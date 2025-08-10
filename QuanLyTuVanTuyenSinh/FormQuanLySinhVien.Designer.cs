@@ -193,6 +193,7 @@
             this.dtgSinhVien.RowTemplate.Height = 24;
             this.dtgSinhVien.Size = new System.Drawing.Size(943, 254);
             this.dtgSinhVien.TabIndex = 14;
+            this.dtgSinhVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgSinhVien_CellContentClick);
             this.dtgSinhVien.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgSinhVien_CellDoubleClick);
             // 
             // FormQuanLySinhVien
@@ -208,6 +209,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormQuanLySinhVien";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý sinh viên";
             this.Load += new System.EventHandler(this.FormQuanLySinhVien_Load);
             this.panelHeader.ResumeLayout(false);

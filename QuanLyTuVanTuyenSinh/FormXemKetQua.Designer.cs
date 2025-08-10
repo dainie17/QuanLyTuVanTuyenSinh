@@ -317,6 +317,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormXemKetQua";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xem kết quả";
             this.Load += new System.EventHandler(this.FormXemKetQua_Load);
             this.panelHeader.ResumeLayout(false);

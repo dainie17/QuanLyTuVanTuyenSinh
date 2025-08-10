@@ -173,6 +173,7 @@ namespace QuanLyTuVanTuyenSinh
             textBox1.Clear();
             comboBox1.SelectedIndex = 0;
             selectedMajorId = -1;
+            pbAnhNganh.Image = null;
         }
 
         private void label7_Click(object sender, EventArgs e)

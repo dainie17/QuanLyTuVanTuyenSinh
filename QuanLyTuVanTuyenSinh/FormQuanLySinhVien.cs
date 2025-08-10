@@ -53,8 +53,79 @@ namespace QuanLyTuVanTuyenSinh
                                        };
 
                 dtgSinhVien.DataSource = danhSachSinhVien.ToList();
+                AddDeleteButtonColumn();
             }
         }
+
+        private void DeleteStudentCascade(int studentUserId)
+        {
+            using (var db = new QL_Tuyen_SinhDataContext())
+            {
+                // Xác định đúng StudentInfo thuộc phụ huynh hiện tại
+                var st = db.StudentInfos.SingleOrDefault(s =>
+                    s.StudentUserID == studentUserId && s.ParentUserID == Session.UserID);
+
+                if (st == null) return;
+
+                // Lấy các hồ sơ tuyển sinh của sinh viên
+                var records = db.AdmissionRecords.Where(r => r.StudentInfoID == st.InfoID).ToList();
+
+                if (records.Any())
+                {
+                    var recordIds = records.Select(r => r.RecordID).ToList();
+
+                    // Xoá Payments trước
+                    var payments = db.Payments.Where(p => recordIds.Contains(p.RecordID));
+                    db.Payments.DeleteAllOnSubmit(payments);
+
+                    // Xoá AdmissionRecords
+                    db.AdmissionRecords.DeleteAllOnSubmit(records);
+                }
+
+                // Xoá StudentInfo
+                db.StudentInfos.DeleteOnSubmit(st);
+
+                // Xoá luôn tài khoản User của sinh viên
+                var user = db.Users.SingleOrDefault(u => u.UserID == studentUserId);
+                if (user != null) db.Users.DeleteOnSubmit(user);
+
+                db.SubmitChanges();
+            }
+        }
+
+
+        private void dtgSinhVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dtgSinhVien.Columns[e.ColumnIndex].Name == "colDelete")
+            {
+                int userId = (int)dtgSinhVien.Rows[e.RowIndex].Cells["UserID"].Value;
+                string hoTen = dtgSinhVien.Rows[e.RowIndex].Cells["FullName"].Value?.ToString() ?? "";
+
+                var confirm = MessageBox.Show(
+                    $"Bạn có chắc muốn xoá sinh viên \"{hoTen}\"?\n" +
+                    "Tất cả hồ sơ tuyển sinh và thanh toán liên quan cũng sẽ bị xoá.",
+                    "Xác nhận xoá",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        DeleteStudentCascade(userId);
+                        LoadSinhVienCuaPhuHuynh();
+                        MessageBox.Show("Đã xoá sinh viên và toàn bộ dữ liệu liên quan.", "Thành công",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Xoá thất bại: " + ex.Message, "Lỗi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
 
         private void dtgSinhVien_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -66,6 +137,24 @@ namespace QuanLyTuVanTuyenSinh
                 LoadSinhVienCuaPhuHuynh(); // reload sau khi sửa
             }
         }
+
+        private void AddDeleteButtonColumn()
+        {
+            if (dtgSinhVien.Columns["colDelete"] == null)
+            {
+                var btnCol = new DataGridViewButtonColumn
+                {
+                    Name = "colDelete",
+                    HeaderText = "Xoá",
+                    Text = "Xoá",
+                    UseColumnTextForButtonValue = true,
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                };
+                dtgSinhVien.Columns.Add(btnCol);
+
+            }
+        }
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {

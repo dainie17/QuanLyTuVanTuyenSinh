@@ -272,6 +272,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormSuaSinhVien";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sửa sinh viên";
             this.Load += new System.EventHandler(this.FormSuaSinhVien_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormSuaSinhVien_MouseDown);

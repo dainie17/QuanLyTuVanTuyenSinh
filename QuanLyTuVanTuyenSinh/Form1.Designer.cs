@@ -335,6 +335,7 @@ namespace QuanLyTuVanTuyenSinh
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cổng thông tin tuyển sinh";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

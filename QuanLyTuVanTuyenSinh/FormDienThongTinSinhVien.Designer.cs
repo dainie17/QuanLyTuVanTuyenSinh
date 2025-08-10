@@ -355,6 +355,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDienThongTinSinhVien";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Điền thông tin sinh viên";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

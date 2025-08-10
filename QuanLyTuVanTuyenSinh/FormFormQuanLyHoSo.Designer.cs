@@ -208,6 +208,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormFormQuanLyHoSo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormFormQuanLyHoSo";
             this.Load += new System.EventHandler(this.FormFormQuanLyHoSo_Load);
             this.panelHeader.ResumeLayout(false);

@@ -55,6 +55,7 @@ namespace QuanLyTuVanTuyenSinh
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnThongKe = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -264,7 +265,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnDangKyTkSv.BackColor = System.Drawing.Color.OrangeRed;
             this.btnDangKyTkSv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDangKyTkSv.ForeColor = System.Drawing.Color.White;
-            this.btnDangKyTkSv.Location = new System.Drawing.Point(10, 278);
+            this.btnDangKyTkSv.Location = new System.Drawing.Point(12, 278);
             this.btnDangKyTkSv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDangKyTkSv.Name = "btnDangKyTkSv";
             this.btnDangKyTkSv.Size = new System.Drawing.Size(419, 40);
@@ -278,7 +279,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnQuanLySv.BackColor = System.Drawing.Color.OrangeRed;
             this.btnQuanLySv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuanLySv.ForeColor = System.Drawing.Color.White;
-            this.btnQuanLySv.Location = new System.Drawing.Point(10, 322);
+            this.btnQuanLySv.Location = new System.Drawing.Point(12, 322);
             this.btnQuanLySv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuanLySv.Name = "btnQuanLySv";
             this.btnQuanLySv.Size = new System.Drawing.Size(419, 40);
@@ -334,7 +335,7 @@ namespace QuanLyTuVanTuyenSinh
             this.btnCapNhatTk.BackColor = System.Drawing.Color.OrangeRed;
             this.btnCapNhatTk.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCapNhatTk.ForeColor = System.Drawing.Color.White;
-            this.btnCapNhatTk.Location = new System.Drawing.Point(10, 234);
+            this.btnCapNhatTk.Location = new System.Drawing.Point(12, 234);
             this.btnCapNhatTk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCapNhatTk.Name = "btnCapNhatTk";
             this.btnCapNhatTk.Size = new System.Drawing.Size(419, 40);
@@ -367,12 +368,27 @@ namespace QuanLyTuVanTuyenSinh
             // pictureBox2
             // 
             this.pictureBox2.Image = global::QuanLyTuVanTuyenSinh.Properties.Resources.z6852218318795_47a6ff3d7d0353bc27ab88156c44397b;
-            this.pictureBox2.Location = new System.Drawing.Point(483, 215);
+            this.pictureBox2.Location = new System.Drawing.Point(466, 234);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(505, 191);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 25;
             this.pictureBox2.TabStop = false;
+            // 
+            // btnThongKe
+            // 
+            this.btnThongKe.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThongKe.ForeColor = System.Drawing.Color.White;
+            this.btnThongKe.Location = new System.Drawing.Point(12, 278);
+            this.btnThongKe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Size = new System.Drawing.Size(419, 40);
+            this.btnThongKe.TabIndex = 0;
+            this.btnThongKe.Text = "Thống kê";
+            this.btnThongKe.UseVisualStyleBackColor = false;
+            this.btnThongKe.Visible = false;
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
             // 
             // FormMain
             // 
@@ -382,6 +398,7 @@ namespace QuanLyTuVanTuyenSinh
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnThongKe);
             this.Controls.Add(this.btnCapNhatTk);
             this.Controls.Add(this.btnXemKetQua);
             this.Controls.Add(this.btnNganhHoc);
@@ -400,6 +417,7 @@ namespace QuanLyTuVanTuyenSinh
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trang chủ";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.panelHeader.ResumeLayout(false);
@@ -437,5 +455,6 @@ namespace QuanLyTuVanTuyenSinh
         private Label label6;
         private Label label7;
         private PictureBox pictureBox2;
+        private Button btnThongKe;
     }
 }

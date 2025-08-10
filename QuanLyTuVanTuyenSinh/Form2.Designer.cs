@@ -369,6 +369,7 @@ namespace QuanLyTuVanTuyenSinh
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng ký tài khoản";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

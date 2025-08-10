@@ -239,6 +239,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormXemNganhHoc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ngành học";
             this.Load += new System.EventHandler(this.FormXemNganhHoc_Load);
             this.panelHeader.ResumeLayout(false);

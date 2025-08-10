@@ -85,73 +85,121 @@ namespace QuanLyTuVanTuyenSinh
 
         private void LoadRecordAndUI(int studentID)
         {
-            currentRecord = db.AdmissionRecords.FirstOrDefault(r => r.StudentInfoID == studentID);                 
+            currentRecord = db.AdmissionRecords.FirstOrDefault(r => r.StudentInfoID == studentID);
 
             if (currentRecord == null)
             {
                 lbKetQua.Text = "Chưa đăng ký";
                 label8.Text = "-";
                 btnThanhToan.Enabled = false;
+                btnThanhToan.Visible = false;
+                lbTrangThai.Visible = false;
                 return;
             }
 
-
             var major = db.Majors.FirstOrDefault(m => m.MajorID == currentRecord.MajorID);
-            var payment = db.Payments.FirstOrDefault(p => p.RecordID == currentRecord.RecordID && p.Status == 1);
+
+            // Lấy payment MỚI NHẤT của hồ sơ (có thể là 0/1/2)
+            var payment = db.Payments
+                            .Where(p => p.RecordID == currentRecord.RecordID)
+                            .OrderByDescending(p => p.PaymentDate)
+                            .FirstOrDefault();
 
             lbKetQua.Text = currentRecord.ResultStatus == 1 ? "Đậu" :
                             currentRecord.ResultStatus == 2 ? "Rớt" : "Chưa xét";
             int rot = currentRecord.ResultStatus;
 
-            if (rot == 2)
+            if (rot == 2 || rot == 0)
             {
-
+                // Rớt: ẩn phần thanh toán
                 btnThanhToan.Visible = false;
                 lbTrangThai.Visible = false;
                 groupBox2.Visible = false;
                 label7.Visible = false;
                 label8.Visible = false;
+                return;
+            }
+
+            // Đang xét / Đậu: hiện học phí
+            label8.Visible = true;
+            label8.Text = major?.TuitionFee.ToString("N0") + " VNĐ";
+
+            if (payment == null)
+            {
+                // Chưa có payment
+                lbTrangThai.Visible = false;
+                btnThanhToan.Visible = true;
+                btnThanhToan.Enabled = true;
             }
             else
             {
-                label8.Visible = true;
-                label8.Text = major?.TuitionFee.ToString("N0") + " VNĐ";
-                if (payment != null)
+                // Có payment -> xử lý theo Status
+                lbTrangThai.Visible = true;
+                btnThanhToan.Visible = false;
+                btnThanhToan.Enabled = false;
+                groupBox2.Visible = false;
+                if (payment.Status == 1) // Completed
                 {
+                    // CHẠY ĐÚNG BLOCK HOÀN TẤT như yêu cầu
+                    lbTrangThai.Text = "Đã thanh toán";
+                    lbTrangThai.ForeColor = Color.Green;
+
                     if (Session.RoleID == 3) // Sinh viên
                     {
-                        lbTrangThai.Visible = true;
-                        lbTrangThai.Text = "Đã thanh toán";
-                        lbTrangThai.ForeColor = Color.Green;
-                        btnThanhToan.Visible = false;
-                        groupBox2.Visible = false;
+                        
                         label7.Visible = true;
                         label6.Location = new Point(37, 119);
                         label7.Location = new Point(37, 194);
                     }
                     else
                     {
-                        lbTrangThai.Visible = true;
-                        lbTrangThai.Text = "Đã thanh toán";
-                        lbTrangThai.ForeColor = Color.Green;
-                        btnThanhToan.Visible = false;
-                        label7.Visible = true;                       
+                        label7.Visible = true;
                         label6.Location = new Point(400, 125);
                         label7.Location = new Point(400, 182);
                         lbKetQua.Location = new Point(480, 125);
                         label8.Location = new Point(480, 182);
                     }
-
                 }
-                else
+                else if (payment.Status == 0) // Pending
                 {
-                    lbTrangThai.Visible = false;
-                    btnThanhToan.Visible = true;
-                }
-                btnThanhToan.Enabled = (payment == null);
-            }
+                    lbTrangThai.Text = "Đợi xác nhận";
+                    lbTrangThai.ForeColor = Color.Orange;
 
+                    // Bố cục giữ như nhánh chưa thanh toán
+                    if (Session.RoleID == 3)
+                    {
+                        label6.Location = new Point(37, 119);
+                        label7.Location = new Point(37, 194);
+                    }
+                    else
+                    {
+                        label6.Location = new Point(400, 125);
+                        label7.Location = new Point(400, 182);
+                        lbKetQua.Location = new Point(480, 125);
+                        label8.Location = new Point(480, 182);
+                    }
+                }
+                else if (payment.Status == 2) // Failed
+                {
+                    lbTrangThai.Text = "Thanh toán thất bại";
+                    lbTrangThai.ForeColor = Color.Red;
+
+                    if (Session.RoleID == 3)
+                    {
+                        label6.Location = new Point(37, 119);
+                        label7.Location = new Point(37, 194);
+                    }
+                    else
+                    {
+                        label6.Location = new Point(400, 125);
+                        label7.Location = new Point(400, 182);
+                        lbKetQua.Location = new Point(480, 125);
+                        label8.Location = new Point(480, 182);
+                    }
+                }
+            }
         }
+
 
         private void label6_Click(object sender, EventArgs e)
         {
@@ -176,7 +224,7 @@ namespace QuanLyTuVanTuyenSinh
                 qrForm.ClientSize = new Size(300, 300);
                 qrForm.Controls.Add(new PictureBox
                 {
-                    Image = global::QuanLyTuVanTuyenSinh.Properties.Resources.qrcode_default, // thay đường dẫn nếu cần
+                    Image = global::QuanLyTuVanTuyenSinh.Properties.Resources.qrcode_default,
                     Dock = DockStyle.Fill,
                     SizeMode = PictureBoxSizeMode.StretchImage
                 });
@@ -189,21 +237,41 @@ namespace QuanLyTuVanTuyenSinh
             }
 
             var major = db.Majors.FirstOrDefault(m => m.MajorID == currentRecord.MajorID);
+
+            // Status theo yêu cầu:
+            // 2 (Chuyển khoản)  -> 1 (Completed)
+            // 1 (Tiền mặt), 3 (Thẻ) -> 0 (Pending)
+            byte status = 0;
+            if (method == 2) status = 1; // Completed
+            else status = 0;             // Pending
+
             var newPayment = new Payment
             {
                 RecordID = currentRecord.RecordID,
                 Amount = major?.TuitionFee ?? 0,
                 Method = method,
                 PaymentDate = DateTime.Now,
-                Status = 1,
+                Status = status,
                 BillImagePath = imagePath
             };
 
             db.Payments.InsertOnSubmit(newPayment);
             db.SubmitChanges();
-            MessageBox.Show("Thanh toán thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Thông báo tuỳ theo trạng thái
+            if (status == 1)
+                MessageBox.Show("Thanh toán thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Đã tạo phiếu thanh toán, đợi xác nhận.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Lưu ý: currentStudentInfoID đã set khi load (với SV).
+            // Nếu là phụ huynh, bạn có thể set nó theo SelectedValue của combobox.
+            if (Session.RoleID == 2 && cbbChonSV.SelectedValue is int infoIdFromParent)
+                currentStudentInfoID = infoIdFromParent;
+
             LoadRecordAndUI(currentStudentInfoID);
         }
+
 
         private void label9_Click(object sender, EventArgs e)
         {

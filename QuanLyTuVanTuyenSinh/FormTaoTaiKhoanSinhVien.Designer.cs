@@ -303,6 +303,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormTaoTaiKhoanSinhVien";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tạo tài khoản cho sinh viên";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

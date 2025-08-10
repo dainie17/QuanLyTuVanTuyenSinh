@@ -66,7 +66,8 @@ namespace QuanLyTuVanTuyenSinh
                     btnQuanLyCoSo.Visible = true;
                     btnQuanLyNganh.Visible = true;
                     btnQuanLyTuyenSinh.Visible = true;
-                    btnDangXuat.Location = new Point(8, 225);
+                    btnThongKe.Visible = true;
+                    btnDangXuat.Location = new Point(8, 260);
                     break;
 
                 case 2: // Phụ huynh
@@ -192,6 +193,13 @@ namespace QuanLyTuVanTuyenSinh
         {
             ReleaseCapture();
             SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+        }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            FormThongKe formThongKe = new FormThongKe();
+            formThongKe.Show();
+            this.Hide();
         }
     }
 }

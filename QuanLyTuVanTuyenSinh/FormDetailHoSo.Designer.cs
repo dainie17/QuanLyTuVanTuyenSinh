@@ -57,9 +57,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.pbBill = new System.Windows.Forms.PictureBox();
-            this.cbbPhuongThucSua = new System.Windows.Forms.ComboBox();
-            this.dtNgayThanhToan = new System.Windows.Forms.DateTimePicker();
-            this.btnLuuThanhToan = new System.Windows.Forms.Button();
+            this.btnXacNhanThanhToan = new System.Windows.Forms.Button();
+            this.btnHuyThanhToan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).BeginInit();
             this.SuspendLayout();
             // 
@@ -361,48 +360,43 @@
             this.pbBill.TabIndex = 6;
             this.pbBill.TabStop = false;
             // 
-            // cbbPhuongThucSua
+            // btnXacNhanThanhToan
             // 
-            this.cbbPhuongThucSua.FormattingEnabled = true;
-            this.cbbPhuongThucSua.Location = new System.Drawing.Point(731, 144);
-            this.cbbPhuongThucSua.Name = "cbbPhuongThucSua";
-            this.cbbPhuongThucSua.Size = new System.Drawing.Size(237, 24);
-            this.cbbPhuongThucSua.TabIndex = 7;
-            this.cbbPhuongThucSua.Visible = false;
+            this.btnXacNhanThanhToan.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnXacNhanThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXacNhanThanhToan.ForeColor = System.Drawing.Color.White;
+            this.btnXacNhanThanhToan.Location = new System.Drawing.Point(309, 413);
+            this.btnXacNhanThanhToan.Name = "btnXacNhanThanhToan";
+            this.btnXacNhanThanhToan.Size = new System.Drawing.Size(230, 55);
+            this.btnXacNhanThanhToan.TabIndex = 9;
+            this.btnXacNhanThanhToan.Text = "Xác nhận thanh toán";
+            this.btnXacNhanThanhToan.UseVisualStyleBackColor = false;
+            this.btnXacNhanThanhToan.Visible = false;
+            this.btnXacNhanThanhToan.Click += new System.EventHandler(this.btnLuuThanhToan_Click);
             // 
-            // dtNgayThanhToan
+            // btnHuyThanhToan
             // 
-            this.dtNgayThanhToan.Location = new System.Drawing.Point(731, 105);
-            this.dtNgayThanhToan.Name = "dtNgayThanhToan";
-            this.dtNgayThanhToan.Size = new System.Drawing.Size(237, 22);
-            this.dtNgayThanhToan.TabIndex = 8;
-            this.dtNgayThanhToan.Visible = false;
-            // 
-            // btnLuuThanhToan
-            // 
-            this.btnLuuThanhToan.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnLuuThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuuThanhToan.ForeColor = System.Drawing.Color.White;
-            this.btnLuuThanhToan.Location = new System.Drawing.Point(335, 413);
-            this.btnLuuThanhToan.Name = "btnLuuThanhToan";
-            this.btnLuuThanhToan.Size = new System.Drawing.Size(195, 55);
-            this.btnLuuThanhToan.TabIndex = 9;
-            this.btnLuuThanhToan.Text = "Lưu thanh toán";
-            this.btnLuuThanhToan.UseVisualStyleBackColor = false;
-            this.btnLuuThanhToan.Visible = false;
-            this.btnLuuThanhToan.Click += new System.EventHandler(this.btnLuuThanhToan_Click);
+            this.btnHuyThanhToan.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnHuyThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHuyThanhToan.ForeColor = System.Drawing.Color.White;
+            this.btnHuyThanhToan.Location = new System.Drawing.Point(545, 413);
+            this.btnHuyThanhToan.Name = "btnHuyThanhToan";
+            this.btnHuyThanhToan.Size = new System.Drawing.Size(203, 55);
+            this.btnHuyThanhToan.TabIndex = 3;
+            this.btnHuyThanhToan.Text = "Huỷ bỏ thanh toán";
+            this.btnHuyThanhToan.UseVisualStyleBackColor = false;
+            this.btnHuyThanhToan.Click += new System.EventHandler(this.btnRot_Click);
             // 
             // FormDetailHoSo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 483);
-            this.Controls.Add(this.btnLuuThanhToan);
-            this.Controls.Add(this.dtNgayThanhToan);
-            this.Controls.Add(this.cbbPhuongThucSua);
+            this.Controls.Add(this.btnXacNhanThanhToan);
             this.Controls.Add(this.pbBill);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label13);
+            this.Controls.Add(this.btnHuyThanhToan);
             this.Controls.Add(this.btnRot);
             this.Controls.Add(this.btnDau);
             this.Controls.Add(this.label9);
@@ -431,6 +425,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormDetailHoSo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chi tiết hồ sơ";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormDetailHoSo_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbBill)).EndInit();
@@ -470,8 +465,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.PictureBox pbBill;
-        private System.Windows.Forms.ComboBox cbbPhuongThucSua;
-        private System.Windows.Forms.DateTimePicker dtNgayThanhToan;
-        private System.Windows.Forms.Button btnLuuThanhToan;
+        private System.Windows.Forms.Button btnXacNhanThanhToan;
+        private System.Windows.Forms.Button btnHuyThanhToan;
     }
 }

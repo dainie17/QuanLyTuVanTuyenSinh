@@ -100,70 +100,140 @@ namespace QuanLyTuVanTuyenSinh
 
         }
 
+        private void OpenDienThongTin()
+        {
+            using (var ctx = new QL_Tuyen_SinhDataContext())
+            {
+                var currentUser = ctx.Users.FirstOrDefault(u => u.UserID == Session.UserID);
+                if (currentUser != null)
+                {
+                    username = currentUser.UserName;
+                    password = currentUser.PasswordHash;
+                    email = currentUser.Email;
+                    phone = currentUser.Phone;
+                }
+            }
+            var f = new FormDienThongTinSinhVien(username, password, email, phone);
+            f.Show();
+            this.Hide();
+        }
+
         private void btnDangKyTs_Click(object sender, EventArgs e)
         {
-            if (cbbChonCoSo.SelectedItem == null || cbbChonNganh.SelectedItem == null)
-            {
-                MessageBox.Show("Vui lòng chọn đầy đủ thông tin cơ sở và ngành học.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Lấy sẵn majorId (nếu chọn được), điểm thi (nếu nhập đúng) 
+            int majorId = 0;
+            if (cbbChonNganh.SelectedValue is int mid) majorId = mid;
 
-            int majorId = (int)cbbChonNganh.SelectedValue;
             decimal? diemThi = null;
-            if (decimal.TryParse(tbDiemThi.Text, out decimal temp)) diemThi = temp;
+            decimal diemTemp;
+            if (decimal.TryParse(tbDiemThi.Text, out diemTemp)) diemThi = diemTemp;
 
-            int studentInfoId = 0;
-            int? parentId = null;
-
-            if (Session.RoleID == 3) // Sinh viên
+            // ========== VAI TRÒ SINH VIÊN ==========
+            if (Session.RoleID == 3)
             {
+                // 1) Chưa có StudentInfo -> điều hướng sang form điền thông tin
                 var student = db.StudentInfos.FirstOrDefault(s => s.StudentUserID == Session.UserID);
                 if (student == null)
                 {
-                    MessageBox.Show("Bạn chưa điền thông tin sinh viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    OpenDienThongTin();
                     return;
                 }
-                studentInfoId = student.InfoID;
+
+                // 2) Bỏ trống chọn ngành HOẶC bỏ trống điểm thi -> điều hướng
+                if (majorId == 0 || string.IsNullOrWhiteSpace(tbDiemThi.Text))
+                {
+                    OpenDienThongTin();
+                    return;
+                }
+
+                // 3) Nhập điểm <0 hoặc >10 -> điều hướng
+                if (!diemThi.HasValue || diemThi.Value < 0m || diemThi.Value > 10m)
+                {
+                    OpenDienThongTin();
+                    return;
+                }
+
+                // 4) Valid: tiếp tục đăng ký
+                int studentInfoId = student.InfoID;
+
+                // Không cho đăng ký trùng
+                if (db.AdmissionRecords.Any(r => r.StudentInfoID == studentInfoId))
+                {
+                    MessageBox.Show("Sinh viên này đã đăng ký tuyển sinh rồi.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var newRecord = new AdmissionRecord
+                {
+                    StudentInfoID = studentInfoId,
+                    MajorID = majorId,
+                    ExamScore = diemThi,            // đã đảm bảo 0..10
+                    ResultStatus = 0,
+                    RegistrationDate = DateTime.Now,
+                    ParentUserID = null
+                };
+
+                db.AdmissionRecords.InsertOnSubmit(newRecord);
+                db.SubmitChanges();
+                MessageBox.Show("Đăng ký tuyển sinh thành công.", "Thành công",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Chuyển về main form
+                FormMain mainForm = new FormMain();
+                mainForm.Show();
+                this.Close();
+                return;
             }
-            else if (Session.RoleID == 2) // Phụ huynh
+
+            // ========== VAI TRÒ PHỤ HUYNH ==========
+            if (Session.RoleID == 2)
             {
+                // Bắt buộc chọn cơ sở & ngành (điểm có thể bỏ trống)
+                if (cbbChonCoSo.SelectedItem == null || majorId == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn đầy đủ cơ sở và ngành học.", "Thiếu thông tin",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (cbbChonSinhVien.SelectedValue == null)
                 {
-                    MessageBox.Show("Vui lòng chọn sinh viên để đăng ký.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng chọn sinh viên để đăng ký.", "Thiếu thông tin",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                studentInfoId = (int)cbbChonSinhVien.SelectedValue;
-                parentId = Session.UserID;
-            }
 
-            if (studentInfoId == 0)
-            {
-                MessageBox.Show("Không tìm thấy thông tin sinh viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                int studentInfoId = (int)cbbChonSinhVien.SelectedValue;
+                int? parentId = Session.UserID;
+
+                if (db.AdmissionRecords.Any(r => r.StudentInfoID == studentInfoId))
+                {
+                    MessageBox.Show("Sinh viên này đã đăng ký tuyển sinh rồi.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Điểm có thể null (bỏ trống) -> vẫn đăng ký thành công
+                var newRecord = new AdmissionRecord
+                {
+                    StudentInfoID = studentInfoId,
+                    MajorID = majorId,
+                    ExamScore = diemThi,           // có thể null
+                    ResultStatus = 0,
+                    RegistrationDate = DateTime.Now,
+                    ParentUserID = parentId
+                };
+
+                db.AdmissionRecords.InsertOnSubmit(newRecord);
+                db.SubmitChanges();
+                MessageBox.Show("Đăng ký tuyển sinh thành công.", "Thành công",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Chuyển về main form
+                FormMain mainForm = new FormMain();
+                mainForm.Show();
+                this.Close();
                 return;
             }
-
-            // Kiểm tra đã đăng ký ngành chưa
-            var daDangKy = db.AdmissionRecords.Any(r => r.StudentInfoID == studentInfoId);
-            if (daDangKy)
-            {
-                MessageBox.Show("Sinh viên này đã đăng ký tuyển sinh rồi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            var newRecord = new AdmissionRecord
-            {
-                StudentInfoID = studentInfoId,
-                MajorID = majorId,
-                ExamScore = diemThi,
-                ResultStatus = 0,
-                RegistrationDate = DateTime.Now,
-                ParentUserID = parentId
-            };
-
-            db.AdmissionRecords.InsertOnSubmit(newRecord);
-            db.SubmitChanges();
-
-            MessageBox.Show("Đăng ký tuyển sinh thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void label6_Click(object sender, EventArgs e)

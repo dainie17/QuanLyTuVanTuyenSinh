@@ -206,6 +206,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormQuanLyUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý người dùng";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

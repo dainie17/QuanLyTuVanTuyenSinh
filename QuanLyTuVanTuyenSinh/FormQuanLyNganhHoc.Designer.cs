@@ -357,6 +357,7 @@
             this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormQuanLyNganhHoc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý ngành học";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

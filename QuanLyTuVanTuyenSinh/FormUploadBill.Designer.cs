@@ -78,6 +78,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnBrowse);
             this.Name = "FormUploadBill";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormUploadBill";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

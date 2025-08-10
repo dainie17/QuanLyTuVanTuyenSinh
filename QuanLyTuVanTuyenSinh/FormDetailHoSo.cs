@@ -31,9 +31,15 @@ namespace QuanLyTuVanTuyenSinh
             InitializeComponent();
             _record = record;
             _recordId = _record.RecordID;
+
+            // Sửa event: tránh dùng handler "btnRot_Click" (dùng cho Hồ sơ rớt)
+            btnHuyThanhToan.Click -= btnRot_Click;
+            btnHuyThanhToan.Click += btnHuyThanhToan_Click;
+
             LoadDetail();
             LoadPaymentInfo(_record.RecordID);
         }
+
 
 
         private void LoadDetail()
@@ -52,69 +58,74 @@ namespace QuanLyTuVanTuyenSinh
         {
             using (var db = new QL_Tuyen_SinhDataContext())
             {
+                // Lấy payment MỚI NHẤT bất kể status
                 var payment = db.Payments
-                                .Where(p => p.RecordID == recordId && p.Status == 1)
+                                .Where(p => p.RecordID == recordId)
                                 .OrderByDescending(p => p.PaymentDate)
                                 .FirstOrDefault();
 
-                bool daThanhToan = payment != null;
+                // Mặc định
+                lbThanhToan.Text = "Chưa";
+                lbThanhToan.ForeColor = Color.Black;
+                lbNgayThanhToan.Text = "-";
+                lbPhuongThuc.Text = "-";
+                pbBill.Image = null;
 
-                lbThanhToan.Text = daThanhToan ? "Đã thanh toán" : "Chưa";
-                lbNgayThanhToan.Text = payment?.PaymentDate.ToString("dd/MM/yyyy") ?? "-";
-                lbPhuongThuc.Text = payment != null ? GetPaymentMethodName(payment.Method) : "-";
+                btnXacNhanThanhToan.Visible = false;
+                btnHuyThanhToan.Visible = false;
 
-                // Ẩn các nút đánh giá nếu đã thanh toán
-                if (daThanhToan)
+                if (payment != null)
                 {
-                    btnDau.Visible = false;
-                    btnRot.Visible = false;
-                    label13.Visible = false;
-                }
+                    // Hiển thị info chung
+                    lbNgayThanhToan.Text = payment.PaymentDate.ToString("dd/MM/yyyy");
+                    lbPhuongThuc.Text = GetPaymentMethodName(payment.Method);
 
-                // Hiển thị ảnh bill nếu có
-                if (!string.IsNullOrEmpty(payment?.BillImagePath) && System.IO.File.Exists(payment.BillImagePath))
-                {
-                    pbBill.Image = Image.FromFile(payment.BillImagePath);
-                }
-                else
-                {
-                    pbBill.Image = null;
-                }
+                    if (!string.IsNullOrEmpty(payment.BillImagePath) && System.IO.File.Exists(payment.BillImagePath))
+                        pbBill.Image = Image.FromFile(payment.BillImagePath);
 
-                // Kiểm tra nếu đã đánh giá thì cho phép sửa thanh toán (nếu là Admin)
-                if (_record.ResultStatus == 1 || _record.ResultStatus == 3)
-                {
-                    cbbPhuongThucSua.Visible = true;
-                    dtNgayThanhToan.Visible = true;
-                    btnLuuThanhToan.Visible = true;
-
-                    if (payment != null && payment.Method != 2)
+                    // Hiển thị theo Status
+                    if (payment.Status == 1) // Completed
                     {
-                       
-                        cbbPhuongThucSua.SelectedValue = payment.Method;                    
-                        dtNgayThanhToan.Value = payment.PaymentDate;
-                        btnLuuThanhToan.Tag = payment.PaymentID;
+                        lbThanhToan.Text = "Đã thanh toán";
+                        lbThanhToan.ForeColor = Color.Green;
 
-                        cbbPhuongThucSua.DisplayMember = "Text";
-                        cbbPhuongThucSua.ValueMember = "Value";
-                        cbbPhuongThucSua.DataSource = new[]
-                        {
-                      new { Text = "Tiền mặt", Value = 1 },
-                      new { Text = "Chuyển khoản", Value = 2 },
-                       new { Text = "Thẻ", Value = 3 }
-                    };
+                        // ẨN 2 nút theo yêu cầu
+                        btnXacNhanThanhToan.Visible = false;
+                        btnHuyThanhToan.Visible = false;
                     }
-                    else
+                    else if (payment.Status == 0) // Pending
                     {
-                        cbbPhuongThucSua.Visible = false;
-                        dtNgayThanhToan.Visible = false;
-                        btnLuuThanhToan.Visible = false;
-                        dtNgayThanhToan.Value = DateTime.Now;
+                        lbThanhToan.Text = "Đợi xác nhận";
+                        lbThanhToan.ForeColor = Color.Orange;
+
+                        // Cho phép xác nhận / huỷ
+                        btnXacNhanThanhToan.Visible = true;
+                        btnHuyThanhToan.Visible = true;
+
+                        // Lưu id payment vào Tag để thao tác
+                        btnXacNhanThanhToan.Tag = payment.PaymentID;
+                        btnHuyThanhToan.Tag = payment.PaymentID;
+                    }
+                    else if (payment.Status == 2) // Failed
+                    {
+                        lbThanhToan.Text = "Thanh toán thất bại";
+                        lbThanhToan.ForeColor = Color.Red;
+
+                        // Cho phép xác nhận lại hoặc tiếp tục huỷ
+                        btnXacNhanThanhToan.Visible = true;
+                        btnHuyThanhToan.Visible = true;
+
+                        btnXacNhanThanhToan.Tag = payment.PaymentID;
+                        btnHuyThanhToan.Tag = payment.PaymentID;
                     }
                 }
 
+                // Nếu hồ sơ đã thanh toán xong → ẩn cụm đánh giá (giống logic cũ của bạn)
+                // (Giữ nguyên nếu bạn muốn tiếp tục cho đánh giá riêng)
+                // if (payment?.Status == 1) { btnDau.Visible = false; btnRot.Visible = false; label13.Visible = false; }
             }
         }
+
 
         private string GetPaymentMethodName(int method)
         {
@@ -129,21 +140,74 @@ namespace QuanLyTuVanTuyenSinh
 
         private void btnLuuThanhToan_Click(object sender, EventArgs e)
         {
-            if (btnLuuThanhToan.Tag is int paymentId)
+            // Xác nhận thanh toán -> Completed
+            int paymentId = 0;
+            if (btnXacNhanThanhToan.Tag is int tagId) paymentId = tagId;
+
+            using (var db = new QL_Tuyen_SinhDataContext())
             {
-                using (var db = new QL_Tuyen_SinhDataContext())
+                Payment payment = null;
+
+                if (paymentId > 0)
                 {
-                    var payment = db.Payments.FirstOrDefault(p => p.PaymentID == paymentId);
-                    if (payment != null)
-                    {
-                        payment.Method = (byte)(cbbPhuongThucSua.SelectedIndex + 1);
-                        payment.PaymentDate = dtNgayThanhToan.Value;
-                        db.SubmitChanges();
-                        MessageBox.Show("Cập nhật thanh toán thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadPaymentInfo(_recordId); // Refresh lại
-                    }
+                    payment = db.Payments.FirstOrDefault(p => p.PaymentID == paymentId);
                 }
+                else
+                {
+                    // fallback: lấy payment mới nhất
+                    payment = db.Payments.Where(p => p.RecordID == _recordId)
+                                         .OrderByDescending(p => p.PaymentDate)
+                                         .FirstOrDefault();
+                }
+
+                if (payment == null)
+                {
+                    MessageBox.Show("Chưa có giao dịch để xác nhận.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                payment.Status = 1; // Completed
+                db.SubmitChanges();
+
+                MessageBox.Show("Đã xác nhận thanh toán.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            LoadPaymentInfo(_recordId);
+        }
+
+        private void btnHuyThanhToan_Click(object sender, EventArgs e)
+        {
+            int paymentId = 0;
+            if (btnHuyThanhToan.Tag is int tagId) paymentId = tagId;
+
+            using (var db = new QL_Tuyen_SinhDataContext())
+            {
+                Payment payment = null;
+
+                if (paymentId > 0)
+                {
+                    payment = db.Payments.FirstOrDefault(p => p.PaymentID == paymentId);
+                }
+                else
+                {
+                    payment = db.Payments.Where(p => p.RecordID == _recordId)
+                                         .OrderByDescending(p => p.PaymentDate)
+                                         .FirstOrDefault();
+                }
+
+                if (payment == null)
+                {
+                    MessageBox.Show("Chưa có giao dịch để huỷ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                payment.Status = 2; // Failed
+                db.SubmitChanges();
+
+                MessageBox.Show("Đã đánh dấu giao dịch: Thanh toán thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            LoadPaymentInfo(_recordId);
         }
 
         private void btnDau_Click(object sender, EventArgs e)
